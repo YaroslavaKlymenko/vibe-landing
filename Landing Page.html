@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>+Vibe — AI EBITDA Growth Lab</title>
+
+<style>
+  /* -----------------------------------------------------------
+     FONTS
+  ----------------------------------------------------------- */
+  @font-face {
+    font-family: 'HAL Timezone';
+    src: url('fonts/HALTimezone-Regular.otf') format('opentype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'HAL Timezone';
+    src: url('fonts/HALTimezone-Italic.otf') format('opentype');
+    font-weight: 400; font-style: italic; font-display: swap;
+  }
+  @font-face {
+    font-family: 'HAL Timezone Mono';
+    src: url('fonts/HALTimezone-Mono.otf') format('opentype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Roboto Mono';
+    src: url('fonts/RobotoMono-VariableFont_wght.ttf') format('truetype');
+    font-weight: 300 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Roboto Mono';
+    src: url('fonts/RobotoMono-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 300 700; font-style: italic; font-display: swap;
+  }
+
+  /* -----------------------------------------------------------
+     TOKENS
+  ----------------------------------------------------------- */
+  :root {
+    --charcoal: #2A2723;
+    --charcoal-2: #1B1917;
+    --cream: #F5EDD6;
+    --cream-soft: #EDE3C7;
+    --sky: #C6DEEB;
+    --sky-soft: #E1EEF6;
+    --lime: #C8F55A;
+    --salmon: #F4896B;
+    --serif: 'HAL Timezone', 'Times New Roman', serif;
+    --mono: 'Roboto Mono', 'Courier New', monospace;
+    --maxw: 1360px;
+    --radius: 22px;
+    --radius-lg: 28px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--serif);
+    background: var(--cream);
+    color: var(--charcoal);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.2;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  ul { list-style: none; }
+
+  .wrap {
+    width: 100%;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 64px;
+  }
+  @media (max-width: 900px) { .wrap { padding: 0 24px; } }
+
+  /* reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.3,1);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: .08s; }
+  .reveal.d2 { transition-delay: .16s; }
+  .reveal.d3 { transition-delay: .24s; }
+  .reveal.d4 { transition-delay: .32s; }
+
+  /* common */
+  .pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 14px 8px 12px;
+    border: 1.5px solid currentColor;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .pill .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 0 0 rgba(200,245,90,0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(200,245,90,0.7); }
+    70% { box-shadow: 0 0 0 14px rgba(200,245,90,0); }
+    100% { box-shadow: 0 0 0 0 rgba(200,245,90,0); }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 22px;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    transition: transform .18s ease, background .2s ease, color .2s ease;
+  }
+  .btn-lime {
+    background: var(--lime);
+    color: var(--charcoal);
+    border: 1.5px solid var(--charcoal);
+  }
+  .btn-lime:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--charcoal); }
+  .btn-ghost {
+    border: 1.5px solid currentColor;
+    color: inherit;
+  }
+  .btn-ghost:hover { background: currentColor; color: var(--cream); }
+  .btn-ghost:hover .btn-arrow { color: var(--cream); }
+  .btn .btn-arrow { font-family: var(--serif); font-style: italic; font-size: 16px; }
+
+  /* italic + scribble underline */
+  .it { font-family: var(--serif); font-style: italic; }
+  .underline {
+    position: relative;
+    display: inline-block;
+  }
+  .underline::after {
+    content: '';
+    position: absolute;
+    left: -2%; right: -2%;
+    bottom: -0.08em;
+    height: 0.22em;
+    background: var(--salmon);
+    z-index: -1;
+    border-radius: 4px 10px 6px 12px;
+    transform: skew(-2deg) rotate(-0.6deg);
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .underline:hover::after {
+    clip-path: inset(0 0% 0 0);
+  }
+  .underline.lime::after { background: var(--lime); }
+  .underline.sky::after { background: var(--sky); }
+
+  section { position: relative; }
+
+  /* -----------------------------------------------------------
+     NAV
+  ----------------------------------------------------------- */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 0;
+    transition: background .25s ease, backdrop-filter .25s ease, border-color .25s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(42,39,35,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom-color: rgba(245,237,214,0.1);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { height: 28px; width: auto; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--cream);
+    opacity: 0.75;
+    transition: opacity .15s ease;
+  }
+  .nav-links a:hover { opacity: 1; }
+  @media (max-width: 820px) { .nav-links { display: none; } }
+
+  /* -----------------------------------------------------------
+     HERO
+  ----------------------------------------------------------- */
+  .hero {
+    background: var(--charcoal);
+    color: var(--cream);
+    min-height: 100vh;
+    padding: 140px 0 80px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-ticker {
+    position: absolute; top: 78px; left: 0; right: 0;
+    overflow: hidden;
+    border-top: 1px solid rgba(245,237,214,0.12);
+    border-bottom: 1px solid rgba(245,237,214,0.12);
+    padding: 10px 0;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .hero-ticker-track {
+    display: inline-flex; gap: 48px;
+    white-space: nowrap;
+    animation: ticker 42s linear infinite;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245,237,214,0.55);
+    padding-left: 48px;
+  }
+  .hero-ticker-track span::before { content: '◆'; margin-right: 48px; color: var(--lime); }
+  @keyframes ticker { to { transform: translateX(-50%); } }
+
+  .hero-body { padding-top: 96px; }
+
+  .hero-eyebrow { margin-bottom: 80px; color: var(--cream); }
+  .hero-eyebrow .pill { border-color: rgba(245,237,214,0.3); color: var(--cream); }
+
+  .hero h1 {
+    font-size: clamp(42px, 6.4vw, 104px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    max-width: 1280px;
+    margin-bottom: 32px;
+  }
+  .hero h1 .line { display: block; }
+  .hero h1 .it { color: var(--lime); }
+
+  .hero-sub {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 620px;
+    color: rgba(245,237,214,0.75);
+    margin-top: 40px;
+  }
+  .hero-who {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(22px, 2.4vw, 30px);
+    color: rgba(245,237,214,0.8);
+    max-width: 720px;
+    margin-top: 12px;
+  }
+  .hero-who strong {
+    font-style: normal;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--salmon);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .hero-ctas { display: flex; gap: 14px; margin-top: 48px; flex-wrap: wrap; align-items: center; }
+  .hero-ctas .email-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: rgba(245,237,214,0.55);
+    letter-spacing: 0.08em;
+    margin-left: 8px;
+    border-bottom: 1px solid rgba(245,237,214,0.2);
+    padding-bottom: 2px;
+  }
+  .hero-ctas .email-link:hover { color: var(--lime); border-color: var(--lime); }
+
+  .hero-strip {
+    margin-top: 96px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(245,237,214,0.18);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,237,214,0.6);
+  }
+  .hero-strip .live { display: inline-flex; align-items: center; gap: 10px; color: var(--cream); }
+  .hero-strip .live .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--lime);
+    box-shadow: 0 0 0 0 rgba(200,245,90,0.6);
+    animation: pulse 1.8s infinite;
+  }
+  .hero-strip .k { color: rgba(245,237,214,0.45); display: block; margin-bottom: 6px; }
+  .hero-strip .v { color: var(--cream); font-family: var(--serif); font-style: italic; font-size: 15px; letter-spacing: 0; text-transform: none; }
+
+  @media (max-width: 820px) {
+    .hero-strip { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  /* -----------------------------------------------------------
+     SECTION base
+  ----------------------------------------------------------- */
+  .sect {
+    padding: 160px 0;
+  }
+  .sect.dark { background: var(--charcoal); color: var(--cream); }
+  .sect.cream { background: var(--cream); }
+  .sect.cream-soft { background: var(--cream-soft); }
+  .sect.sky { background: var(--sky-soft); }
+
+  .section-topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 64px;
+  }
+  .mini-logo { height: 20px; opacity: 0.5; }
+  .sect.dark .mini-logo { filter: invert(1) brightness(2); }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(38px, 5vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    max-width: 1080px;
+  }
+  h2 .it { color: inherit; }
+  .sect.dark h2 { color: var(--cream); }
+
+  .lead {
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 580px;
+    color: rgba(42,39,35,0.78);
+    margin-top: 36px;
+  }
+  .sect.dark .lead { color: rgba(245,237,214,0.75); }
+
+  /* -----------------------------------------------------------
+     WHO THIS IS FOR
+  ----------------------------------------------------------- */
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 72px;
+  }
+  .who-quals {
+    display: grid;
+    gap: 0;
+    border-top: 1.5px solid var(--charcoal);
+  }
+  .who-qual {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-bottom: 1.5px solid var(--charcoal);
+    align-items: center;
+  }
+  .who-qual .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(42,39,35,0.5);
+  }
+  .who-qual .v {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.2;
+  }
+  .who-qual .v em { font-style: italic; color: var(--salmon); }
+
+  .who-fence {
+    background: var(--charcoal);
+    color: var(--cream);
+    border-radius: var(--radius-lg);
+    padding: 44px;
+    align-self: end;
+    position: relative;
+  }
+  .who-fence .lbl {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 20px;
+  }
+  .who-fence h3 {
+    font-family: var(--serif);
+    font-size: clamp(26px, 2.8vw, 44px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+  .who-fence h3 .it { font-style: italic; color: var(--lime); }
+  .who-fence p {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(245,237,214,0.7);
+    margin-top: 28px;
+    max-width: 420px;
+  }
+  @media (max-width: 900px) {
+    .who-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  /* -----------------------------------------------------------
+     MAP / BUILD / RUN
+  ----------------------------------------------------------- */
+  .mbr-head {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 64px;
+    align-items: end;
+    margin-bottom: 80px;
+  }
+  .mbr-head .meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(42,39,35,0.5);
+  }
+  .mbr-head .meta em {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.3;
+    letter-spacing: 0;
+    color: var(--charcoal);
+    margin-top: 14px;
+    text-transform: none;
+  }
+
+  .mbr {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .mbr-card {
+    background: var(--cream);
+    border: 1.5px solid var(--charcoal);
+    border-radius: var(--radius-lg);
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-height: 520px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .mbr-card:hover { transform: translate(-4px,-4px); box-shadow: 8px 8px 0 var(--charcoal); }
+  .mbr-card .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .mbr-card .head .step {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(42,39,35,0.55);
+  }
+  .mbr-card .head .glyph {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--salmon);
+  }
+  .mbr-card h3 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 2.8vw, 44px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .mbr-card h3 .it {
+    display: block;
+    font-style: italic;
+    font-size: 0.62em;
+    color: var(--salmon);
+    margin-top: 10px;
+  }
+  .mbr-card p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: rgba(42,39,35,0.78);
+  }
+  .mbr-card .kpi {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(42,39,35,0.15);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .mbr-card .kpi .k {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(42,39,35,0.5);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .mbr-card .kpi .v {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.1;
+  }
+  .mbr-card .kpi .v strong { font-style: normal; color: var(--salmon); }
+
+  .mbr-card.middle { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
+  .mbr-card.middle .head .step { color: rgba(245,237,214,0.55); }
+  .mbr-card.middle .head .glyph { color: var(--lime); }
+  .mbr-card.middle h3 .it { color: var(--lime); }
+  .mbr-card.middle p { color: rgba(245,237,214,0.75); }
+  .mbr-card.middle .kpi { border-top-color: rgba(245,237,214,0.2); }
+  .mbr-card.middle .kpi .k { color: rgba(245,237,214,0.5); }
+  .mbr-card.middle .kpi .v strong { color: var(--lime); }
+
+  .mbr-footer {
+    margin-top: 40px;
+    padding: 28px 36px;
+    border: 1.5px dashed var(--charcoal);
+    border-radius: var(--radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .mbr-footer .t {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.2;
+  }
+  .mbr-footer .t em { font-style: italic; color: var(--salmon); }
+  .mbr-footer .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(42,39,35,0.55);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 980px) {
+    .mbr { grid-template-columns: 1fr; }
+    .mbr-card { min-height: 0; }
+    .mbr-head { grid-template-columns: 1fr; gap: 28px; }
+    .mbr-footer { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* -----------------------------------------------------------
+     PROOF
+  ----------------------------------------------------------- */
+  .proof {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: end;
+  }
+  .proof-claim h2 { color: var(--cream); }
+  .proof-sub {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(245,237,214,0.65);
+    margin-top: 32px;
+    max-width: 420px;
+  }
+
+  .proof-logos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 72px;
+    grid-column: 1 / -1;
+  }
+  .logo-tile {
+    border: 1px dashed rgba(245,237,214,0.25);
+    border-radius: 18px;
+    padding: 36px 20px;
+    min-height: 130px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,237,214,0.4);
+    text-align: center;
+    background: rgba(245,237,214,0.02);
+  }
+  .logo-tile.filled {
+    border: 1px solid rgba(245,237,214,0.3);
+    background: rgba(245,237,214,0.05);
+    color: var(--cream);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+  @media (max-width: 900px) { .proof-logos { grid-template-columns: 1fr 1fr; } }
+
+  .proof-stats {
+    margin-top: 80px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(245,237,214,0.18);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+  .proof-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .proof-stat .n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(48px, 5vw, 76px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+  }
+  .proof-stat .n.lime { color: var(--lime); }
+  .proof-stat .n.salmon { color: var(--salmon); }
+  .proof-stat .l {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.55;
+    letter-spacing: 0.06em;
+    color: rgba(245,237,214,0.6);
+  }
+  @media (max-width: 900px) {
+    .proof { grid-template-columns: 1fr; gap: 32px; }
+    .proof-stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* -----------------------------------------------------------
+     DIFFERENCES
+  ----------------------------------------------------------- */
+  .diff-head {
+    margin-bottom: 88px;
+  }
+  .diff-head .lead { max-width: 680px; }
+
+  .diffs {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+  }
+  .diff {
+    border: 1.5px solid var(--charcoal);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 260px;
+    background: var(--cream);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .diff:hover { transform: translate(-3px,-3px); box-shadow: 6px 6px 0 var(--charcoal); }
+  .diff .idx {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: rgba(42,39,35,0.5);
+  }
+  .diff h4 {
+    font-family: var(--serif);
+    font-size: clamp(20px, 1.8vw, 27px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .diff h4 .it { font-style: italic; color: var(--salmon); }
+  .diff p {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(42,39,35,0.72);
+    margin-top: auto;
+  }
+  .diff.accent { background: var(--lime); }
+  .diff.dark { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
+  .diff.dark .idx { color: rgba(245,237,214,0.55); }
+  .diff.dark p { color: rgba(245,237,214,0.75); }
+  .diff.dark h4 .it { color: var(--lime); }
+
+  /* layout: 5 cards, varied spans */
+  .diff:nth-child(1) { grid-column: span 7; }
+  .diff:nth-child(2) { grid-column: span 5; }
+  .diff:nth-child(3) { grid-column: span 4; }
+  .diff:nth-child(4) { grid-column: span 4; }
+  .diff:nth-child(5) { grid-column: span 4; }
+  @media (max-width: 900px) {
+    .diffs { grid-template-columns: 1fr; }
+    .diff:nth-child(n) { grid-column: span 1; }
+  }
+
+  /* -----------------------------------------------------------
+     CLOSE
+  ----------------------------------------------------------- */
+  .cta-final {
+    padding: 140px 0;
+    background:
+      radial-gradient(ellipse at 20% 120%, rgba(244,137,107,0.18), transparent 60%),
+      radial-gradient(ellipse at 90% 20%, rgba(200,245,90,0.14), transparent 55%),
+      var(--charcoal-2);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(245,237,214,0.03) 0, rgba(245,237,214,0.03) 1px, transparent 1px, transparent 36px);
+    pointer-events: none;
+  }
+  .cta-final h2 {
+    font-size: clamp(40px, 5.5vw, 86px);
+    color: var(--cream);
+    max-width: 1100px;
+  }
+  .cta-final h2 .it { color: var(--lime); font-style: italic; }
+  .cta-row {
+    margin-top: 72px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+  }
+  .cta-row .email {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: rgba(245,237,214,0.7);
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid rgba(245,237,214,0.25);
+    padding-bottom: 3px;
+  }
+  .cta-row .email:hover { color: var(--lime); border-color: var(--lime); }
+
+  /* -----------------------------------------------------------
+     FOOTER
+  ----------------------------------------------------------- */
+  footer {
+    background: var(--charcoal-2);
+    color: rgba(245,237,214,0.5);
+    padding: 48px 0 36px;
+    border-top: 1px solid rgba(245,237,214,0.1);
+  }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+  footer .copy {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  footer .links { display: flex; gap: 24px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+  footer a:hover { color: var(--lime); }
+
+  /* -----------------------------------------------------------
+     MODAL
+  ----------------------------------------------------------- */
+  .modal { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; }
+  .modal.open { display: flex; animation: mf .25s ease; }
+  @keyframes mf { from { opacity: 0; } to { opacity: 1; } }
+  .m-bd { position: absolute; inset: 0; background: rgba(20,18,16,0.72); backdrop-filter: blur(8px); }
+  .m-panel {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 960px;
+    max-height: 92vh; overflow: auto;
+    background: var(--cream);
+    border: 2px solid var(--charcoal);
+    border-radius: 28px;
+    box-shadow: 12px 12px 0 var(--charcoal);
+    display: grid; grid-template-columns: 0.85fr 1fr;
+  }
+  .m-close { position: absolute; top: 16px; right: 18px; width: 38px; height: 38px; border-radius: 50%; background: var(--charcoal); color: var(--cream); font-size: 22px; display: flex; align-items: center; justify-content: center; z-index: 2; }
+  .m-close:hover { background: var(--salmon); color: var(--charcoal); }
+  .m-left { background: var(--charcoal); color: var(--cream); padding: 44px 40px; border-radius: 26px 0 0 26px; display: flex; flex-direction: column; gap: 24px; }
+  .m-left .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lime); }
+  .m-left h3 { font-family: var(--serif); font-size: 44px; line-height: 1; }
+  .m-left h3 .it { color: var(--lime); font-style: italic; }
+  .m-left p { font-family: var(--mono); font-size: 13px; line-height: 1.65; color: rgba(245,237,214,0.72); }
+  .m-left ul { border-top: 1px solid rgba(245,237,214,0.18); margin-top: auto; }
+  .m-left li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(245,237,214,0.1); font-family: var(--mono); font-size: 12px; }
+  .m-left .k { color: rgba(245,237,214,0.55); letter-spacing: 0.1em; text-transform: uppercase; }
+  .m-form { padding: 44px 40px; display: flex; flex-direction: column; gap: 20px; position: relative; }
+  .m-field { display: flex; flex-direction: column; gap: 8px; }
+  .m-field label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: rgba(42,39,35,0.6); text-transform: uppercase; }
+  .m-field input, .m-field textarea, .m-field select {
+    font-family: var(--mono); font-size: 14px; color: var(--charcoal);
+    background: transparent; border: none; border-bottom: 1.5px solid rgba(42,39,35,0.25);
+    padding: 8px 2px; outline: none; transition: border-color .2s ease; resize: none;
+  }
+  .m-field input:focus, .m-field textarea:focus, .m-field select:focus { border-bottom-color: var(--salmon); }
+  .m-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .m-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .m-chips button {
+    font-family: var(--mono); font-size: 11.5px; padding: 8px 14px; border-radius: 999px;
+    background: transparent; border: 1.5px solid rgba(42,39,35,0.25); color: var(--charcoal);
+    transition: all .15s ease;
+  }
+  .m-chips button:hover { border-color: var(--charcoal); }
+  .m-chips button.active { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
+  .m-submit { margin-top: 8px; align-self: flex-start; }
+  .m-thanks { display: none; position: absolute; inset: 0; background: var(--cream); border-radius: 0 26px 26px 0; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 40px; text-align: center; font-family: var(--serif); font-size: 20px; line-height: 1.4; }
+  .m-thanks strong { display: block; font-family: var(--serif); font-style: italic; font-size: 34px; }
+  .m-thanks .mark { width: 68px; height: 68px; border-radius: 50%; background: var(--lime); border: 2px solid var(--charcoal); display: flex; align-items: center; justify-content: center; font-size: 32px; }
+  .m-form.sent .m-thanks { display: flex; }
+  @media (max-width: 820px) {
+    .m-panel { grid-template-columns: 1fr; }
+    .m-left { border-radius: 26px 26px 0 0; }
+    .m-row { grid-template-columns: 1fr; }
+    .m-thanks { border-radius: 0 0 26px 26px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =============================================================
+     NAV
+============================================================== -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" aria-label="+Vibe home">
+      <img src="assets/logo-full-color.png" alt="+Vibe" class="nav-logo" />
+    </a>
+    <div class="nav-links">
+      <a href="#who">Who it's for</a>
+      <a href="#what">What we do</a>
+      <a href="#proof">Proof</a>
+      <a href="#diff">Why us</a>
+    </div>
+    <a href="#contact" class="btn btn-lime js-open">Book an intro <span class="btn-arrow">→</span></a>
+  </div>
+</nav>
+
+<!-- =============================================================
+     HERO
+============================================================== -->
+<section class="hero" id="top">
+  <div class="hero-ticker" aria-hidden="true">
+    <div class="hero-ticker-track">
+      <span>EBITDA Growth Lab</span><span>Agent Swarms</span><span>Mid-Market Operators</span><span>Margin on the Upside</span><span>Client-Owned Infra</span><span>90 Days to First Result</span><span>Map · Build · Run</span>
+      <span>EBITDA Growth Lab</span><span>Agent Swarms</span><span>Mid-Market Operators</span><span>Margin on the Upside</span><span>Client-Owned Infra</span><span>90 Days to First Result</span><span>Map · Build · Run</span>
+    </div>
+  </div>
+
+  <div class="wrap hero-body">
+    <div class="hero-eyebrow reveal">
+      <span class="pill"><span class="dot"></span>AI EBITDA Growth Lab · Est. 2025</span>
+    </div>
+
+    <h1 class="reveal d1">
+      <span class="line">We <span class="it">raise your metrics.</span></span>
+      <span class="line">You pay us from the upside.</span>
+    </h1>
+
+    <p class="hero-who reveal d2">
+      <strong>Who we are</strong>
+      AI EBITDA Growth Lab for mid-market operators.
+    </p>
+
+    <p class="hero-sub reveal d3">
+      We embed inside non-tech businesses and deploy proprietary AI agent swarms that grow revenue and cut OPEX. Our fee comes out of the margin we create — not your budget.
+    </p>
+
+    <div class="hero-ctas reveal d4">
+      <a href="#contact" class="btn btn-lime js-open">Book an intro <span class="btn-arrow">→</span></a>
+      <a href="#what" class="btn btn-ghost" style="border-color: rgba(245,237,214,0.4); color: var(--cream);">How it works</a>
+      <a href="mailto:eugene@aiplusvibe.com" class="email-link">eugene@aiplusvibe.com</a>
+    </div>
+
+    <div class="hero-strip reveal d4">
+      <div class="live"><span class="dot"></span>Taking 3 new engagements · Q3'26</div>
+      <div>
+        <span class="k">First meaningful result</span>
+        <span class="v">90 days</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================
+     WHO THIS IS FOR
+============================================================== -->
+<section class="sect cream" id="who">
+  <div class="wrap">
+    <div class="section-topbar reveal">
+      <span class="pill" style="color: var(--charcoal);"><span class="dot"></span>Who this is for</span>
+    </div>
+
+    <h2 class="reveal">
+      You're a US mid-market <span class="it"><span class="underline">operator.</span></span>
+    </h2>
+
+    <div class="who-grid">
+      <ul class="who-quals reveal d1">
+        <li class="who-qual">
+          <span class="k">01</span>
+          <span class="v">$50M–$200M <em>revenue</em>, 50+ headcount.</span>
+        </li>
+        <li class="who-qual">
+          <span class="k">02</span>
+          <span class="v">Non-tech business with <em>high-volume digital operations</em>.</span>
+        </li>
+        <li class="who-qual">
+          <span class="k">03</span>
+          <span class="v">Logistics & supply chain, real estate ops, professional services, or multi-location hospitality.</span>
+        </li>
+        <li class="who-qual">
+          <span class="k">04</span>
+          <span class="v">Leading consolidation, preparing to sell, or running a <em>roll-up portfolio</em>.</span>
+        </li>
+      </ul>
+
+      <div class="who-fence reveal d2">
+        <div class="lbl"><span class="pill" style="color: var(--lime); border-color: var(--lime);"><span class="dot"></span>The test</span></div>
+        <h3>
+          If that's you,<br/>
+          <span class="it">keep reading.</span>
+        </h3>
+        <p>Every sentence below is written for one operator. If you don't match the profile above, we're not the fit — and we'll tell you so on the call.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================
+     WHAT WE DO — MAP / BUILD / RUN
+============================================================== -->
+<section class="sect sky" id="what">
+  <div class="wrap">
+    <div class="section-topbar reveal">
+      <span class="pill" style="color: var(--charcoal);"><span class="dot"></span>What we do</span>
+    </div>
+
+    <div class="mbr-head">
+      <h2 class="reveal">
+        <span style="display:block;">Map → Build → Run.</span>
+        <span class="it" style="display:block;">Three modes.</span>
+        <span class="it" style="display:block;"><span class="underline lime">One engagement.</span></span>
+      </h2>
+      <div class="meta reveal d1">
+        The engagement
+        <em>Every agent is client-owned infrastructure. Not a subscription. Not a lock-in.</em>
+      </div>
+    </div>
+
+    <div class="mbr">
+      <!-- MAP -->
+      <div class="mbr-card reveal">
+        <div class="head">
+          <span class="step">01 · Map</span>
+          <span class="glyph">↘</span>
+        </div>
+        <h3>
+          Find the margin.
+          <span class="it">before we build.</span>
+        </h3>
+        <p>Function-by-function roadmap with projected EBITDA impact, costed and sequenced, before a single agent is built.</p>
+        <div class="kpi">
+          <div><span class="k">Timeline</span><span class="v"><strong>Weeks</strong></span></div>
+          <div><span class="k">Output</span><span class="v">Costed roadmap</span></div>
+        </div>
+      </div>
+
+      <!-- BUILD -->
+      <div class="mbr-card middle reveal d1">
+        <div class="head">
+          <span class="step">02 · Build</span>
+          <span class="glyph">⚡</span>
+        </div>
+        <h3>
+          Ship the agents
+          <span class="it">that move it.</span>
+        </h3>
+        <p>Custom agent swarm into Sales, CS, Marketing, or BizOps. First meaningful result in 90 days. Full function ramp in 180.</p>
+        <div class="kpi">
+          <div><span class="k">First result</span><span class="v"><strong>90 days</strong></span></div>
+          <div><span class="k">Full ramp</span><span class="v"><strong>180 days</strong></span></div>
+        </div>
+      </div>
+
+      <!-- RUN -->
+      <div class="mbr-card reveal d2">
+        <div class="head">
+          <span class="step">03 · Run</span>
+          <span class="glyph">∞</span>
+        </div>
+        <h3>
+          Compound it
+          <span class="it">quarter after quarter.</span>
+        </h3>
+        <p>Fractional AI team. Maintain, improve, expand into the next function. Full multi-function transformation in 12 months.</p>
+        <div class="kpi">
+          <div><span class="k">Full transform</span><span class="v"><strong>12 mo</strong></span></div>
+          <div><span class="k">Avg engagement</span><span class="v"><strong>18 mo</strong></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mbr-footer reveal d3">
+      <div class="t">Every agent is <em>client-owned infrastructure</em>. Not a subscription. Not a lock-in.</div>
+      <div class="tag">◆ Survives M&A due diligence</div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================
+     PROOF
+============================================================== -->
+<section class="sect dark" id="proof">
+  <div class="wrap">
+    <div class="section-topbar reveal">
+      <span class="pill" style="color: var(--cream); border-color: rgba(245,237,214,0.3);"><span class="dot"></span>Why we're the best option</span>
+    </div>
+
+    <div class="proof">
+      <div class="proof-claim">
+        <h2 class="reveal">
+          Trusted by operators building the <span class="it"><span class="underline lime">next decade</span></span> of their vertical.
+        </h2>
+      </div>
+      <div>
+        <p class="proof-sub reveal d1">
+          Six months old. Small on purpose. Every engagement is a design partnership — operators who want to write the playbook with us, not buy it off a shelf.
+        </p>
+      </div>
+
+      <div class="proof-logos reveal d2">
+        <div class="logo-tile filled">Outpost Club</div>
+        <div class="logo-tile">Pilot #2 · Q3'26</div>
+        <div class="logo-tile">Pilot #3 · Q3'26</div>
+        <div class="logo-tile">◇ Your logo here</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============================================================
+     HOW WE'RE DIFFERENT
+============================================================== -->
+<section class="sect cream-soft" id="diff">
+  <div class="wrap">
+    <div class="section-topbar reveal">
+      <span class="pill" style="color: var(--charcoal);"><span class="dot"></span>How we're different</span>
+    </div>
+
+    <div class="diff-head">
+      <h2 class="reveal">
+        Not another <span class="it"><span class="underline">AI automation agency.</span></span>
+      </h2>
+      <p class="lead reveal d1">
+        Five things that actually matter — the rest of the category does roughly none of them.
+      </p>
+    </div>
+
+    <div class="diffs">
+      <div class="diff dark reveal">
+        <span class="idx">01 / PRICING</span>
+        <h4>Priced on <span class="it">outcomes,</span> not hours.</h4>
+        <p>You pay against the margin we create. Not against a timesheet, not against a rate card.</p>
+      </div>
+
+      <div class="diff dark reveal d1">
+        <span class="idx">02 / ENGAGEMENT MODEL</span>
+        <h4>We <span class="it">embed and compound.</span> We don't pilot and exit.</h4>
+        <p>18-month average engagement. The blueprint gets sharper every quarter — yours, not ours.</p>
+      </div>
+
+      <div class="diff reveal d2">
+        <span class="idx">03 / SCOPE</span>
+        <h4>One swarm across the <span class="it">whole business</span>.</h4>
+        <p>Vertical AI software fixes one thing. We move Sales, CS, Marketing, and BizOps on the same rails.</p>
+      </div>
+
+      <div class="diff reveal d3">
+        <span class="idx">04 / OWNERSHIP</span>
+        <h4>Client-owned <span class="it">infrastructure.</span></h4>
+        <p>Not third-party SaaS. Survives M&A due diligence — critical if you're preparing to acquire or be acquired.</p>
+      </div>
+
+      <div class="diff reveal d4">
+        <span class="idx">05 / DEPTH</span>
+        <h4>PM depth, not <span class="it">consulting slides.</span></h4>
+        <p>We put the business on AI rails. We don't consult on it — and we won't hand you a deck instead of a shipped system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================
+     CLOSE
+============================================================== -->
+<section class="cta-final" id="contact">
+  <div class="wrap">
+    <div class="section-topbar reveal">
+      <span class="pill" style="color: var(--cream); border-color: rgba(245,237,214,0.3);"><span class="dot"></span>Close</span>
+    </div>
+
+    <h2 class="reveal">
+      If AI is on your board agenda,<br/>
+      <span class="it"><span class="underline lime">tell us what you're working on.</span></span>
+    </h2>
+
+    <p class="lead reveal d1" style="color: rgba(245,237,214,0.72); max-width: 640px;">
+      Tell us what you're working on and where you're stuck. We'll tell you — candidly — if +Vibe is the right fit.
+    </p>
+
+    <div class="cta-row reveal d2">
+      <a href="#contact" class="btn btn-lime js-open">Book an intro <span class="btn-arrow">→</span></a>
+      <a href="mailto:eugene@aiplusvibe.com" class="email">eugene@aiplusvibe.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================
+     FOOTER
+============================================================== -->
+<footer>
+  <div class="wrap">
+    <div class="copy">© 2026 +Vibe · AI EBITDA Growth Lab</div>
+    <div class="links">
+      <a href="mailto:eugene@aiplusvibe.com">eugene@aiplusvibe.com</a>
+      <a href="#contact" class="js-open">Book an intro</a>
+    </div>
+  </div>
+</footer>
+
+<!-- =============================================================
+     CONTACT MODAL
+============================================================== -->
+<div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="m-bd" data-close></div>
+  <div class="m-panel">
+    <button class="m-close" data-close aria-label="Close">×</button>
+    <div class="m-left">
+      <div class="eyebrow">Book an intro · Q3'26</div>
+      <h3>Tell us what<br/>you're <span class="it">working on.</span></h3>
+      <p>A 30-minute intro. No deck, no pitch. We listen, then we'll tell you — candidly — if +Vibe is the right fit for what you're trying to move.</p>
+      <ul>
+        <li><span class="k">Reply</span><span class="v">&lt; 24h</span></li>
+        <li><span class="k">First call</span><span class="v">This week</span></li>
+        <li><span class="k">Contact</span><span class="v">eugene@aiplusvibe.com</span></li>
+      </ul>
+    </div>
+    <form class="m-form" id="f" novalidate>
+      <div class="m-field">
+        <label for="f-name">Your name</label>
+        <input id="f-name" name="name" type="text" placeholder="Alex Rivera" required />
+      </div>
+      <div class="m-row">
+        <div class="m-field">
+          <label for="f-email">Work email</label>
+          <input id="f-email" name="email" type="email" placeholder="alex@company.com" required />
+        </div>
+        <div class="m-field">
+          <label for="f-company">Company</label>
+          <input id="f-company" name="company" type="text" placeholder="Acme Logistics" />
+        </div>
+      </div>
+      <div class="m-field">
+        <label>Revenue band</label>
+        <div class="m-chips" data-name="rev">
+          <button type="button" data-val="<$50M">&lt;$50M</button>
+          <button type="button" data-val="$50–100M">$50–100M</button>
+          <button type="button" data-val="$100–200M">$100–200M</button>
+          <button type="button" data-val=">$200M">&gt;$200M</button>
+        </div>
+      </div>
+      <div class="m-field">
+        <label>Vertical</label>
+        <div class="m-chips" data-name="vert">
+          <button type="button" data-val="Logistics">Logistics & Supply Chain</button>
+          <button type="button" data-val="Real Estate">Real Estate Ops</button>
+          <button type="button" data-val="Prof Services">Professional Services</button>
+          <button type="button" data-val="Hospitality">Hospitality</button>
+          <button type="button" data-val="Other">Other</button>
+        </div>
+      </div>
+      <div class="m-field">
+        <label for="f-msg">What are you working on — where are you stuck?</label>
+        <textarea id="f-msg" name="message" rows="3" placeholder="We're rolling up independent 3PLs — sales ops are the bottleneck…"></textarea>
+      </div>
+      <button type="submit" class="btn btn-lime m-submit">Send it over <span class="btn-arrow">→</span></button>
+      <div class="m-thanks" aria-live="polite">
+        <div class="mark">✓</div>
+        <div><strong>Got it.</strong>We'll reply within 24 hours.</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Nav scroll state
+  (function() {
+    const nav = document.getElementById('nav');
+    const update = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+
+  // Reveal on scroll (scroll-listener for iframe reliability)
+  (function() {
+    const reveals = Array.from(document.querySelectorAll('.reveal'));
+    const vh = () => window.innerHeight || document.documentElement.clientHeight;
+    function check() {
+      const v = vh();
+      for (let i = reveals.length - 1; i >= 0; i--) {
+        const r = reveals[i].getBoundingClientRect();
+        if (r.top < v * 0.92 && r.bottom > 0) {
+          reveals[i].classList.add('in');
+          reveals.splice(i, 1);
+        }
+      }
+    }
+    reveals.slice().forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < vh() * 0.98) {
+        el.style.transition = 'none';
+        el.classList.add('in');
+        void el.offsetWidth;
+        requestAnimationFrame(() => { el.style.transition = ''; });
+        const i = reveals.indexOf(el);
+        if (i > -1) reveals.splice(i, 1);
+      }
+    });
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check, { passive: true });
+    const t = setInterval(() => { check(); if (!reveals.length) clearInterval(t); }, 300);
+  })();
+
+  // Contact modal
+  (function() {
+    const modal = document.getElementById('modal');
+    const form = document.getElementById('f');
+    const openers = document.querySelectorAll('.js-open, a[href="#contact"]');
+    const open = (e) => {
+      if (e && e.currentTarget.getAttribute('href') === '#contact' && !e.currentTarget.classList.contains('js-open')) return;
+      if (e) e.preventDefault();
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => { const n = document.getElementById('f-name'); n && n.focus(); }, 100);
+    };
+    const close = () => {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+    openers.forEach(a => a.addEventListener('click', open));
+    modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+
+    modal.querySelectorAll('.m-chips').forEach(group => {
+      group.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = form.querySelector('#f-name').value.trim();
+      const email = form.querySelector('#f-email').value.trim();
+      if (!name || !email) {
+        form.querySelectorAll('input[required]').forEach(i => { if (!i.value.trim()) i.style.borderBottomColor = 'var(--salmon)'; });
+        return;
+      }
+      form.classList.add('sent');
+      setTimeout(close, 2600);
+      setTimeout(() => { form.classList.remove('sent'); form.reset(); modal.querySelectorAll('.m-chips button.active').forEach(b => b.classList.remove('active')); }, 3000);
+    });
+  })();
+</script>
+
+</body>
+</html>
