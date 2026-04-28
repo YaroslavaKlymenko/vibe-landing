@@ -1,31 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'HAL Timezone';
-  src: url('/fonts/HALTimezone-Regular.otf') format('opentype');
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'HAL Timezone';
-  src: url('/fonts/HALTimezone-Italic.otf') format('opentype');
-  font-weight: 400; font-style: italic; font-display: swap;
-}
-@font-face {
-  font-family: 'HAL Timezone Mono';
-  src: url('/fonts/HALTimezone-Mono.otf') format('opentype');
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  src: url('/fonts/RobotoMono-VariableFont_wght.ttf') format('truetype');
-  font-weight: 300 700; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  src: url('/fonts/RobotoMono-Italic-VariableFont_wght.ttf') format('truetype');
-  font-weight: 300 700; font-style: italic; font-display: swap;
-}
-
 :root {
   --charcoal: #2A2723;
   --charcoal-2: #1B1917;
@@ -35,8 +9,8 @@
   --sky-soft: #E1EEF6;
   --lime: #C8F55A;
   --salmon: #F4896B;
-  --serif: 'HAL Timezone', 'Times New Roman', serif;
-  --mono: 'Roboto Mono', 'Courier New', monospace;
+  --serif: var(--font-geist-mono), 'Times New Roman', serif;
+  --mono: var(--font-geist-mono), 'Courier New', monospace;
   --maxw: 1360px;
   --radius: 22px;
   --radius-lg: 28px;
@@ -122,10 +96,10 @@ ul { list-style: none; }
   color: inherit;
 }
 .btn-ghost:hover { background: currentColor; color: var(--cream); }
-.btn .btn-arrow { font-family: var(--serif); font-style: italic; font-size: 16px; }
+.btn .btn-arrow { font-family: var(--serif); font-weight: bold; font-size: 16px; }
 
-/* italic + scribble underline */
-.it { font-family: var(--serif); font-style: italic; }
+/* bold + scribble underline */
+.it { font-family: var(--serif); font-weight: bold; }
 .underline-accent {
   position: relative;
   display: inline-block;

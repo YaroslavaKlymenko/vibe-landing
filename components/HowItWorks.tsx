@@ -107,7 +107,6 @@ export default function HowItWorks() {
             </p>
             <div style={kpiStyle()}>
               <div><span style={kLabelStyle()}>Full transform</span><span style={kValueStyle()}><strong style={{ color: 'var(--salmon)' }}>12 mo</strong></span></div>
-              <div><span style={kLabelStyle()}>Avg engagement</span><span style={kValueStyle()}><strong style={{ color: 'var(--salmon)' }}>18 mo</strong></span></div>
             </div>
           </div>
         </div>

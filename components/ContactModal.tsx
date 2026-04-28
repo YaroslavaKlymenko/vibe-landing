@@ -142,7 +142,7 @@ export default function ContactModal() {
               <input name="email" type="email" placeholder="alex@company.com" required style={inputStyle} />
             </Field>
             <Field label="Company">
-              <input name="company" type="text" placeholder="Acme Logistics" style={inputStyle} />
+              <input name="company" type="text" placeholder="Acme Logistics" required style={inputStyle} />
             </Field>
           </div>
 
@@ -159,15 +159,7 @@ export default function ContactModal() {
           </Field>
 
           <Field label="Vertical">
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 4 }}>
-              {['Logistics & Supply Chain', 'Real Estate Ops', 'Professional Services', 'Hospitality', 'Other'].map((v) => (
-                <button
-                  key={v} type="button"
-                  onClick={() => toggleChip('vert', v)}
-                  style={chipStyle(chips.vert === v)}
-                >{v}</button>
-              ))}
-            </div>
+            <input name="vertical" type="text" placeholder="e.g. Logistics & Supply Chain" style={inputStyle} />
           </Field>
 
           <Field label="What are you working on — where are you stuck?">
