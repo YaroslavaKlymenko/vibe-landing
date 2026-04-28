@@ -9,11 +9,10 @@ export default function HowItWorks() {
             <span className="dot" />
             What we do
           </span>
-          <img src="/assets/logo-full-black.png" className="mini-logo" alt="+Vibe" style={{ height: 20, width: 'auto' }} />
         </div>
 
         {/* Head */}
-        <div style={{
+        <div className="mob-head" style={{
           display: 'grid',
           gridTemplateColumns: '1.6fr 1fr',
           gap: 64,
@@ -53,12 +52,12 @@ export default function HowItWorks() {
         </div>
 
         {/* Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+        <div className="mob-stack" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
           {/* MAP */}
           <div className="mbr-card reveal" style={cardStyle()}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
               <span style={stepStyle()}>01 · Map</span>
-              <span style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 44, lineHeight: 1, color: 'var(--salmon)' }}>↘</span>
+              <span style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 28, lineHeight: 1, color: 'var(--salmon)' }}>↘</span>
             </div>
             <h3 style={cardH3Style()}>
               Find the margin.
@@ -77,7 +76,7 @@ export default function HowItWorks() {
           <div className="mbr-card reveal d1" style={cardStyle(true)}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
               <span style={{ ...stepStyle(), color: 'rgba(245,237,214,0.55)' }}>02 · Build</span>
-              <span style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 44, lineHeight: 1, color: 'var(--lime)' }}>⚡</span>
+              <span style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 28, lineHeight: 1, color: 'var(--lime)' }}>⚡</span>
             </div>
             <h3 style={{ ...cardH3Style(), color: 'var(--cream)' }}>
               Ship the agents
@@ -96,7 +95,7 @@ export default function HowItWorks() {
           <div className="mbr-card reveal d2" style={cardStyle()}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
               <span style={stepStyle()}>03 · Run</span>
-              <span style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 44, lineHeight: 1, color: 'var(--salmon)' }}>∞</span>
+              <span style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 28, lineHeight: 1, color: 'var(--salmon)' }}>∞</span>
             </div>
             <h3 style={cardH3Style()}>
               Compound it
@@ -113,7 +112,7 @@ export default function HowItWorks() {
 
         {/* Footer note */}
         <div
-          className="reveal d3"
+          className="reveal d3 how-footnote"
           style={{
             marginTop: 40,
             padding: '28px 36px',
@@ -128,7 +127,7 @@ export default function HowItWorks() {
           <div style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px, 2vw, 26px)', lineHeight: 1.2 }}>
             Every agent is <em style={{ fontStyle: 'italic', color: 'var(--salmon)' }}>client-owned infrastructure</em>. Not a subscription. Not a lock-in.
           </div>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(42,39,35,0.55)', whiteSpace: 'nowrap' }}>
+          <div className="how-footnote-badge" style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(42,39,35,0.55)', whiteSpace: 'nowrap' }}>
             ◆ Survives M&amp;A due diligence
           </div>
         </div>
@@ -167,7 +166,7 @@ function stepStyle(): React.CSSProperties {
 function cardH3Style(): React.CSSProperties {
   return {
     fontFamily: 'var(--serif)',
-    fontSize: 'clamp(36px, 3.6vw, 56px)',
+    fontSize: 'clamp(26px, 2.6vw, 42px)',
     lineHeight: 1,
     letterSpacing: '-0.02em',
   }

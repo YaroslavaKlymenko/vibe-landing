@@ -120,7 +120,7 @@ ul { list-style: none; }
 
 /* sections */
 section { position: relative; }
-.sect { padding: 160px 0; }
+.sect { padding: 120px 0; }
 .sect.dark { background: var(--charcoal); color: var(--cream); }
 .sect.cream { background: var(--cream); }
 .sect.cream-soft { background: var(--cream-soft); }
@@ -128,15 +128,15 @@ section { position: relative; }
 
 .section-topbar {
   display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 .mini-logo { height: 20px; opacity: 0.5; }
 .sect.dark .mini-logo { filter: invert(1) brightness(2); }
 
 h2 {
   font-family: var(--serif);
-  font-size: clamp(48px, 6.4vw, 96px);
-  line-height: 0.98;
+  font-size: clamp(32px, 4.2vw, 64px);
+  line-height: 1.0;
   letter-spacing: -0.02em;
   max-width: 1080px;
 }
@@ -151,3 +151,69 @@ h2 {
   margin-top: 36px;
 }
 .sect.dark .lead { color: rgba(245,237,214,0.75); }
+
+/* ─── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Sections */
+  .sect { padding: 60px 0; }
+  .section-topbar { margin-bottom: 24px; }
+  #close { padding: 60px 0 !important; }
+
+  /* Hero — push content below ticker (ticker ends ~118px from top; section padding 72px → need wrap ≥ 48px) */
+  #top { padding: 72px 0 60px !important; min-height: auto !important; }
+  #top .wrap { padding-top: 52px !important; }
+  .hero-eyebrow { margin-bottom: 28px !important; }
+
+  /* Suppress forced line-breaks on small screens */
+  #what h2 br,
+  #close h2 br { display: none; }
+
+  /* Single-column grid helper */
+  .mob-stack {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  /* Reset any inline grid-column spans */
+  .mob-stack > * { grid-column: auto !important; min-height: auto !important; }
+
+  /* HowItWorks top header (h2 + blurb) */
+  .mob-head {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    margin-bottom: 32px !important;
+  }
+
+  /* MBR cards — tighten padding, remove fixed height */
+  .mbr-card {
+    min-height: auto !important;
+    padding: 24px 20px !important;
+  }
+
+  /* HowItWorks footnote bar — stack vertically */
+  .how-footnote {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 20px !important;
+    gap: 12px !important;
+  }
+  .how-footnote-badge { white-space: normal !important; }
+
+  /* Footer */
+  .footer-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  /* Close CTA flex */
+  .close-ctas {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    margin-top: 40px !important;
+  }
+
+  /* Prevent any horizontal overflow */
+  body { overflow-x: hidden; }
+  .wrap { overflow-x: hidden; }
+}

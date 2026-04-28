@@ -29,10 +29,10 @@ export default function Nav() {
       }}
     >
       <div className="wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <a href="#top" aria-label="+Vibe home">
+        <a href="#top" aria-label="+Vibe home" className="nav-logo">
           <img src="/assets/logo-full-color.png" alt="+Vibe" style={{ height: 28, width: 'auto' }} />
         </a>
-        <div style={{ display: 'flex', gap: 28 }}>
+        <div className="hidden md:flex" style={{ gap: 28 }}>
           <a href="#who" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)', opacity: 0.75 }}>Who it&apos;s for</a>
           <a href="#what" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)', opacity: 0.75 }}>What we do</a>
           <a href="#proof" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)', opacity: 0.75 }}>Proof</a>

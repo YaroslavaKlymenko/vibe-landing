@@ -7,15 +7,13 @@ export default function WhoFor() {
             <span className="dot" />
             Who this is for
           </span>
-          <img src="/assets/logo-full-black.png" className="mini-logo" alt="+Vibe" style={{ height: 20, width: 'auto' }} />
         </div>
 
         <h2 className="reveal">
-          You&apos;re a US mid-market<br />
-          <span className="it"><span className="underline-accent">operator.</span></span>
+          You&apos;re a US mid-market <span className="it"><span className="underline-accent">operator.</span></span>
         </h2>
 
-        <div style={{
+        <div className="mob-stack" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: 80,
@@ -69,7 +67,7 @@ export default function WhoFor() {
                 The test
               </span>
             </div>
-            <h3 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(32px, 3.6vw, 56px)', lineHeight: 1.02, letterSpacing: '-0.02em' }}>
+            <h3 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px, 2.7vw, 42px)', lineHeight: 1.02, letterSpacing: '-0.02em' }}>
               If that&apos;s you,<br />
               <span className="it" style={{ color: 'var(--lime)' }}>keep reading.</span>
             </h3>

@@ -9,10 +9,7 @@ export default function Hero() {
         background: 'var(--charcoal)',
         color: 'var(--cream)',
         minHeight: '100vh',
-        padding: '140px 0 80px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
+        padding: '100px 0 100px',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -55,9 +52,9 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="wrap" style={{ paddingTop: 96 }}>
+      <div className="wrap" style={{ paddingTop: 48 }}>
         {/* Eyebrow */}
-        <div className="reveal" style={{ marginBottom: 80, color: 'var(--cream)' }}>
+        <div className="reveal hero-eyebrow" style={{ marginBottom: 44, color: 'var(--cream)' }}>
           <span className="pill" style={{ borderColor: 'rgba(245,237,214,0.3)', color: 'var(--cream)' }}>
             <span className="dot" />
             AI EBITDA Growth Lab · Est. 2025
@@ -68,18 +65,16 @@ export default function Hero() {
         <h1
           className="reveal d1"
           style={{
-            fontSize: 'clamp(52px, 8.2vw, 132px)',
+            fontSize: 'clamp(32px, 4.2vw, 68px)',
             lineHeight: 0.96,
             letterSpacing: '-0.025em',
             maxWidth: 1280,
-            marginBottom: 32,
+            marginBottom: 24,
             fontFamily: 'var(--serif)',
           }}
         >
-          <span style={{ display: 'block' }}>We raise your metrics.</span>
-          <span style={{ display: 'block' }}>
-            <span className="it" style={{ color: 'var(--lime)' }}>You pay us</span> from the upside.
-          </span>
+          <span style={{ display: 'block' }}>We <span className="it" style={{ color: 'var(--lime)' }}>raise your metrics.</span></span>
+          <span style={{ display: 'block' }}>You pay us from the upside.</span>
         </h1>
 
         {/* Who we are */}
@@ -91,7 +86,7 @@ export default function Hero() {
             fontSize: 'clamp(22px, 2.4vw, 30px)',
             color: 'rgba(245,237,214,0.8)',
             maxWidth: 720,
-            marginTop: 12,
+            marginTop: 6,
           }}
         >
           <strong style={{
@@ -116,14 +111,14 @@ export default function Hero() {
             lineHeight: 1.7,
             maxWidth: 620,
             color: 'rgba(245,237,214,0.75)',
-            marginTop: 40,
+            marginTop: 24,
           }}
         >
           We embed inside non-tech businesses and deploy proprietary AI agent swarms that grow revenue and cut OPEX. Our fee comes out of the margin we create — not your budget.
         </p>
 
         {/* CTAs */}
-        <div className="reveal d4" style={{ display: 'flex', gap: 14, marginTop: 48, flexWrap: 'wrap', alignItems: 'center' }}>
+        <div className="reveal d4" style={{ display: 'flex', gap: 14, marginTop: 36, flexWrap: 'wrap', alignItems: 'center' }}>
           <BookingButton className="btn btn-lime" />
           <a href="#what" className="btn btn-ghost" style={{ borderColor: 'rgba(245,237,214,0.4)', color: 'var(--cream)' }}>
             How it works
@@ -144,36 +139,6 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Strip */}
-        <div
-          className="reveal d4"
-          style={{
-            marginTop: 96,
-            paddingTop: 28,
-            borderTop: '1px solid rgba(245,237,214,0.18)',
-            display: 'grid',
-            gridTemplateColumns: '1.2fr 1fr 1fr',
-            gap: 48,
-            fontFamily: 'var(--mono)',
-            fontSize: 11,
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            color: 'rgba(245,237,214,0.6)',
-          }}
-        >
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, color: 'var(--cream)' }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--lime)', animation: 'pulse 1.8s infinite', display: 'inline-block' }} />
-            Taking 3 new engagements · Q3&apos;26
-          </div>
-          <div>
-            <span style={{ color: 'rgba(245,237,214,0.45)', display: 'block', marginBottom: 6 }}>First meaningful result</span>
-            <span style={{ color: 'var(--cream)', fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 15, letterSpacing: 0, textTransform: 'none' }}>90 days</span>
-          </div>
-          <div>
-            <span style={{ color: 'rgba(245,237,214,0.45)', display: 'block', marginBottom: 6 }}>Avg. engagement</span>
-            <span style={{ color: 'var(--cream)', fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 15, letterSpacing: 0, textTransform: 'none' }}>18 months</span>
-          </div>
-        </div>
       </div>
     </section>
   )

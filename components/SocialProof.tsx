@@ -9,15 +9,12 @@ export default function SocialProof() {
             <span className="dot" />
             Why we&apos;re the best option
           </span>
-          <img src="/assets/logo-full-color.png" className="mini-logo" alt="+Vibe" style={{ filter: 'none', opacity: 0.5, height: 20, width: 'auto' }} />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 80, alignItems: 'end' }}>
+        <div className="mob-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 80, alignItems: 'end' }}>
           <div>
             <h2 className="reveal">
-              Trusted by operators<br />
-              building the <span className="it"><span className="underline-accent lime">next decade</span></span><br />
-              of their vertical.
+              Trusted by operators building the <span className="it"><span className="underline-accent lime">next decade</span></span> of their vertical.
             </h2>
           </div>
           <div>
@@ -34,41 +31,6 @@ export default function SocialProof() {
           </div>
         </div>
 
-        {/* Stats */}
-        <div style={{
-          marginTop: 80,
-          paddingTop: 48,
-          borderTop: '1px solid rgba(245,237,214,0.18)',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(5, 1fr)',
-          gap: 24,
-        }}>
-          {[
-            { n: '6', color: 'var(--cream)', label: 'Old. Small on purpose — every engagement is a design partnership.', delay: '' },
-            { n: '$100K', color: 'var(--lime)', label: 'Pilot running. Outpost Club — real engagement, not a case study.', delay: 'd1' },
-            { n: '2', color: 'var(--cream)', label: 'Additional pilots signed intent. Live in Q3\'26.', delay: 'd2' },
-            { n: '5', color: 'var(--salmon)', label: 'Warm leads in the pipeline, all inbound from operators.', delay: 'd3' },
-            { n: '0$', color: 'var(--lime)', label: 'Marketing spend. The work recruits the next engagement.', delay: 'd4' },
-          ].map((s, i) => (
-            <div key={i} className={`reveal ${s.delay}`} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{
-                fontFamily: 'var(--serif)',
-                fontStyle: 'italic',
-                fontSize: 'clamp(48px, 5vw, 76px)',
-                lineHeight: 0.95,
-                letterSpacing: '-0.02em',
-                color: s.color,
-              }}>{s.n}</div>
-              <div style={{
-                fontFamily: 'var(--mono)',
-                fontSize: 11.5,
-                lineHeight: 1.55,
-                letterSpacing: '0.06em',
-                color: 'rgba(245,237,214,0.6)',
-              }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   )

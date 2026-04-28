@@ -11,9 +11,10 @@ export default function WhyDifferent() {
   }[] = [
     {
       idx: '01 / PRICING',
-      title: <>Priced on <span className="it" style={{ color: 'var(--salmon)' }}>outcomes,</span> not hours.</>,
+      title: <>Priced on <span className="it" style={{ color: 'var(--lime)' }}>outcomes,</span> not hours.</>,
       body: 'You pay against the margin we create. Not against a timesheet, not against a rate card.',
-      style: { background: 'var(--lime)', border: '1.5px solid var(--charcoal)' },
+      style: { background: 'var(--charcoal)', color: 'var(--cream)', border: '1.5px solid var(--charcoal)' },
+      dark: true,
       span: 7,
     },
     {
@@ -57,20 +58,18 @@ export default function WhyDifferent() {
             <span className="dot" />
             How we&apos;re different
           </span>
-          <img src="/assets/logo-full-black.png" className="mini-logo" alt="+Vibe" style={{ height: 20, width: 'auto' }} />
         </div>
 
         <div style={{ marginBottom: 88 }}>
           <h2 className="reveal">
-            Not another<br />
-            <span className="it"><span className="underline-accent">AI automation agency.</span></span>
+            Not another <span className="it"><span className="underline-accent">AI automation agency.</span></span>
           </h2>
           <p className="lead reveal d1">
             Five things that actually matter — the rest of the category does roughly none of them.
           </p>
         </div>
 
-        <div style={{
+        <div className="mob-stack" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(12, 1fr)',
           gap: 20,
@@ -99,7 +98,7 @@ export default function WhyDifferent() {
               }}>{d.idx}</span>
               <h4 style={{
                 fontFamily: 'var(--serif)',
-                fontSize: 'clamp(24px, 2.4vw, 34px)',
+                fontSize: 'clamp(18px, 1.8vw, 26px)',
                 lineHeight: 1.1,
                 letterSpacing: '-0.01em',
                 color: d.dark ? 'var(--cream)' : 'var(--charcoal)',

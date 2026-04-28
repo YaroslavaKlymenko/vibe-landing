@@ -50,6 +50,7 @@ export default function ContactModal() {
       aria-modal="true"
       aria-label="Book an intro"
       onKeyDown={handleKeyDown}
+      className="modal-overlay"
       style={{
         position: 'fixed', inset: 0, zIndex: 1000,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -57,7 +58,30 @@ export default function ContactModal() {
         animation: 'mf .25s ease',
       }}
     >
-      <style>{`@keyframes mf { from { opacity: 0 } to { opacity: 1 } }`}</style>
+      <style>{`
+        @keyframes mf { from { opacity: 0 } to { opacity: 1 } }
+        @media (max-width: 768px) {
+          .modal-overlay { padding: 12px; align-items: flex-end; }
+          .modal-panel {
+            grid-template-columns: 1fr !important;
+            box-shadow: none !important;
+            border-radius: 20px !important;
+            max-height: 92vh !important;
+          }
+          .modal-left {
+            border-radius: 18px 18px 0 0 !important;
+            padding: 28px 22px !important;
+          }
+          .modal-left h3 { font-size: 26px !important; line-height: 1.1 !important; }
+          .modal-left p { display: none; }
+          .modal-form {
+            border-radius: 0 0 18px 18px !important;
+            padding: 24px 22px !important;
+          }
+          .modal-field-row { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .modal-thanks { border-radius: 0 0 18px 18px !important; }
+        }
+      `}</style>
 
       {/* Backdrop */}
       <div
@@ -70,17 +94,19 @@ export default function ContactModal() {
       />
 
       {/* Panel */}
-      <div style={{
-        position: 'relative', zIndex: 1,
-        width: '100%', maxWidth: 960,
-        maxHeight: '92vh', overflowY: 'auto',
-        background: 'var(--cream)',
-        border: '2px solid var(--charcoal)',
-        borderRadius: 28,
-        boxShadow: '12px 12px 0 var(--charcoal)',
-        display: 'grid',
-        gridTemplateColumns: '0.85fr 1fr',
-      }}>
+      <div
+        className="modal-panel"
+        style={{
+          position: 'relative', zIndex: 1,
+          width: '100%', maxWidth: 960,
+          maxHeight: '92vh', overflowY: 'auto',
+          background: 'var(--cream)',
+          border: '2px solid var(--charcoal)',
+          borderRadius: 28,
+          boxShadow: '12px 12px 0 var(--charcoal)',
+          display: 'grid',
+          gridTemplateColumns: '0.85fr 1fr',
+        }}>
         {/* Close */}
         <button
           onClick={close}
@@ -95,12 +121,14 @@ export default function ContactModal() {
         >×</button>
 
         {/* Left */}
-        <div style={{
-          background: 'var(--charcoal)', color: 'var(--cream)',
-          padding: '44px 40px',
-          borderRadius: '26px 0 0 26px',
-          display: 'flex', flexDirection: 'column', gap: 24,
-        }}>
+        <div
+          className="modal-left"
+          style={{
+            background: 'var(--charcoal)', color: 'var(--cream)',
+            padding: '44px 40px',
+            borderRadius: '26px 0 0 26px',
+            display: 'flex', flexDirection: 'column', gap: 24,
+          }}>
           <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--lime)' }}>
             Book an intro · Q3&apos;26
           </div>
@@ -131,13 +159,14 @@ export default function ContactModal() {
         {/* Right — form */}
         <form
           onSubmit={handleSubmit}
+          className="modal-form"
           style={{ padding: '44px 40px', display: 'flex', flexDirection: 'column', gap: 20, position: 'relative' }}
         >
           <Field label="Your name">
             <input ref={nameRef} name="name" type="text" placeholder="Alex Rivera" required style={inputStyle} />
           </Field>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+          <div className="modal-field-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
             <Field label="Work email">
               <input name="email" type="email" placeholder="alex@company.com" required style={inputStyle} />
             </Field>
@@ -176,15 +205,17 @@ export default function ContactModal() {
 
           {/* Thank you overlay */}
           {sent && (
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'var(--cream)',
-              borderRadius: '0 26px 26px 0',
-              display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center',
-              gap: 20, padding: 40, textAlign: 'center',
-              fontFamily: 'var(--serif)', fontSize: 20, lineHeight: 1.4,
-            }}>
+            <div
+              className="modal-thanks"
+              style={{
+                position: 'absolute', inset: 0,
+                background: 'var(--cream)',
+                borderRadius: '0 26px 26px 0',
+                display: 'flex', flexDirection: 'column',
+                alignItems: 'center', justifyContent: 'center',
+                gap: 20, padding: 40, textAlign: 'center',
+                fontFamily: 'var(--serif)', fontSize: 20, lineHeight: 1.4,
+              }}>
               <div style={{
                 width: 68, height: 68, borderRadius: '50%',
                 background: 'var(--lime)', border: '2px solid var(--charcoal)',
