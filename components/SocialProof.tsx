@@ -29,25 +29,8 @@ export default function SocialProof() {
               marginTop: 32,
               maxWidth: 420,
             }}>
-              Six months old. Small on purpose. Every engagement is a design partnership — operators who want to write the playbook with us, not buy it off a shelf.
+              Every engagement is a design partnership — operators who want to write the playbook with us, not buy it off a shelf.
             </p>
-          </div>
-
-          {/* Logo row */}
-          <div
-            className="reveal d2"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: 16,
-              marginTop: 72,
-              gridColumn: '1 / -1',
-            }}
-          >
-            <div style={logoTileFilled()}>Outpost Club</div>
-            <div style={logoTileEmpty()}>Pilot #2 · Q3&apos;26</div>
-            <div style={logoTileEmpty()}>Pilot #3 · Q3&apos;26</div>
-            <div style={logoTileEmpty()}>◇ Your logo here</div>
           </div>
         </div>
 
