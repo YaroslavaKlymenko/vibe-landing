@@ -54,7 +54,7 @@ export default function Hero() {
 
       <div className="wrap" style={{ paddingTop: 48 }}>
         {/* Eyebrow */}
-        <div className="reveal hero-eyebrow" style={{ marginBottom: 44, color: 'var(--cream)' }}>
+        <div className="reveal hero-eyebrow" style={{ marginBottom: 24, color: 'var(--cream)' }}>
           <span className="pill" style={{ borderColor: 'rgba(245,237,214,0.3)', color: 'var(--cream)' }}>
             <span className="dot" />
             AI EBITDA Growth Lab · Est. 2025
@@ -79,7 +79,7 @@ export default function Hero() {
 
         {/* Who we are */}
         <p
-          className="reveal d2"
+          className="reveal d2 hero-who"
           style={{
             fontFamily: 'var(--serif)',
             fontStyle: 'italic',
@@ -104,7 +104,7 @@ export default function Hero() {
 
         {/* Subhead */}
         <p
-          className="reveal d3"
+          className="reveal d3 hero-sub"
           style={{
             fontFamily: 'var(--mono)',
             fontSize: 14,
@@ -118,13 +118,14 @@ export default function Hero() {
         </p>
 
         {/* CTAs */}
-        <div className="reveal d4" style={{ display: 'flex', gap: 14, marginTop: 36, flexWrap: 'wrap', alignItems: 'center' }}>
+        <div className="reveal d4 hero-ctas" style={{ display: 'flex', gap: 14, marginTop: 36, flexWrap: 'wrap', alignItems: 'center' }}>
           <BookingButton className="btn btn-lime" />
           <a href="#what" className="btn btn-ghost" style={{ borderColor: 'rgba(245,237,214,0.4)', color: 'var(--cream)' }}>
             How it works
           </a>
           <a
             href="mailto:eugene@aiplusvibe.com"
+            className="hidden md:inline"
             style={{
               fontFamily: 'var(--mono)',
               fontSize: 12,

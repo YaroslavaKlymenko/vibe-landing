@@ -98,6 +98,15 @@ ul { list-style: none; }
 .btn-ghost:hover { background: currentColor; color: var(--cream); }
 .btn .btn-arrow { font-family: var(--serif); font-weight: bold; font-size: 16px; }
 
+/* nav link hover */
+.nav-link { opacity: 0.75; transition: opacity .15s ease; }
+.nav-link:hover { opacity: 1; }
+
+/* card hovers */
+.mbr-card { cursor: default; }
+.mbr-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(42,39,35,0.13); }
+.diff-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(42,39,35,0.1); }
+
 /* bold + scribble underline */
 .it { font-family: var(--serif); font-weight: bold; }
 .underline-accent {
@@ -114,7 +123,10 @@ ul { list-style: none; }
   z-index: -1;
   border-radius: 4px 10px 6px 12px;
   transform: skew(-2deg) rotate(-0.6deg);
+  opacity: 0;
+  transition: opacity .2s ease;
 }
+.underline-accent:hover::after { opacity: 1; }
 .underline-accent.lime::after { background: var(--lime); }
 .underline-accent.sky::after { background: var(--sky); }
 
@@ -159,10 +171,14 @@ h2 {
   .section-topbar { margin-bottom: 24px; }
   #close { padding: 60px 0 !important; }
 
-  /* Hero — push content below ticker (ticker ends ~118px from top; section padding 72px → need wrap ≥ 48px) */
+  /* Hero — push content below ticker (ticker ends ~118px from top; section padding 72px → need wrap ≥ 76px) */
   #top { padding: 72px 0 60px !important; min-height: auto !important; }
-  #top .wrap { padding-top: 52px !important; }
-  .hero-eyebrow { margin-bottom: 28px !important; }
+  #top .wrap { padding-top: 100px !important; }
+  .hero-eyebrow { margin-bottom: 24px !important; }
+  #top h1 { margin-bottom: 44px !important; }
+  #top .hero-who { margin-top: 20px !important; }
+  #top .hero-sub { margin-top: 44px !important; }
+  #top .hero-ctas { margin-top: 52px !important; }
 
   /* Suppress forced line-breaks on small screens */
   #what h2 br,
@@ -183,11 +199,19 @@ h2 {
     margin-bottom: 32px !important;
   }
 
-  /* MBR cards — tighten padding, remove fixed height */
+  /* MBR cards — tighten padding, remove fixed height, disable hover lift on touch */
   .mbr-card {
     min-height: auto !important;
     padding: 24px 20px !important;
   }
+  .mbr-card:hover, .diff-card:hover { transform: none; box-shadow: none; }
+
+  /* WhoFor grid margin + fence card padding */
+  #who .mob-stack { margin-top: 36px !important; }
+  .fence-card { padding: 28px 22px !important; }
+
+  /* WhyDifferent head spacing */
+  #diff .wrap > div:first-of-type { margin-bottom: 40px !important; }
 
   /* HowItWorks footnote bar — stack vertically */
   .how-footnote {

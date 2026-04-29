@@ -6,6 +6,7 @@ type ChipGroup = { rev: string; vert: string }
 export default function ContactModal() {
   const [open, setOpen] = useState(false)
   const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [chips, setChips] = useState<ChipGroup>({ rev: '', vert: '' })
   const nameRef = useRef<HTMLInputElement>(null)
 
@@ -34,8 +35,28 @@ export default function ContactModal() {
     if (e.key === 'Escape') close()
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSubmitting(true)
+    const fd = new FormData(e.currentTarget)
+    const payload = {
+      name: fd.get('name'),
+      email: fd.get('email'),
+      company: fd.get('company'),
+      revenue: chips.rev,
+      vertical: fd.get('vertical'),
+      message: fd.get('message'),
+    }
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+    } catch {
+      // show success regardless — don't block UX on network errors
+    }
+    setSubmitting(false)
     setSent(true)
   }
 
@@ -132,11 +153,11 @@ export default function ContactModal() {
           <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--lime)' }}>
             Book an intro · Q3&apos;26
           </div>
-          <h3 style={{ fontFamily: 'var(--serif)', fontSize: 44, lineHeight: 1 }}>
-            Tell us what<br />you&apos;re <span style={{ fontStyle: 'italic', color: 'var(--lime)' }}>working on.</span>
+          <h3 style={{ fontFamily: 'var(--serif)', fontSize: 36, lineHeight: 1.1 }}>
+            If AI is on your board agenda, tell us what you&apos;re <span style={{ fontStyle: 'italic', color: 'var(--lime)' }}>working on.</span>
           </h3>
           <p style={{ fontFamily: 'var(--mono)', fontSize: 13, lineHeight: 1.65, color: 'rgba(245,237,214,0.72)' }}>
-            A 30-minute intro. No deck, no pitch. We listen, then we&apos;ll tell you — candidly — if +Vibe is the right fit for what you&apos;re trying to move.
+            If you&apos;re a mid-market operator and AI is on your board agenda, tell us what you&apos;re working on and where you&apos;re stuck. We&apos;ll tell you if +Vibe is the right fit.
           </p>
           <ul style={{ borderTop: '1px solid rgba(245,237,214,0.18)', marginTop: 'auto' }}>
             {[
@@ -177,7 +198,7 @@ export default function ContactModal() {
 
           <Field label="Revenue band">
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 4 }}>
-              {['<$50M', '$50–100M', '$100–200M', '>$200M'].map((v) => (
+              {['<$1M', '$1M–$5M', '$5M–$20M', '$20M+'].map((v) => (
                 <button
                   key={v} type="button"
                   onClick={() => toggleChip('rev', v)}
@@ -199,8 +220,8 @@ export default function ContactModal() {
             />
           </Field>
 
-          <button type="submit" className="btn btn-lime" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
-            Send it over <span className="btn-arrow">→</span>
+          <button type="submit" className="btn btn-lime" disabled={submitting} style={{ alignSelf: 'flex-start', marginTop: 8, opacity: submitting ? 0.7 : 1 }}>
+            {submitting ? 'Sending…' : <><span>Send it over</span> <span className="btn-arrow">→</span></>}
           </button>
 
           {/* Thank you overlay */}

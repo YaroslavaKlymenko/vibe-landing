@@ -33,10 +33,10 @@ export default function Nav() {
           <img src="/assets/logo-full-color.png" alt="+Vibe" style={{ height: 28, width: 'auto' }} />
         </a>
         <div className="hidden md:flex" style={{ gap: 28 }}>
-          <a href="#who" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)', opacity: 0.75 }}>Who it&apos;s for</a>
-          <a href="#what" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)', opacity: 0.75 }}>What we do</a>
-          <a href="#proof" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)', opacity: 0.75 }}>Proof</a>
-          <a href="#diff" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)', opacity: 0.75 }}>Why us</a>
+          <a href="#who" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>Who it&apos;s for</a>
+          <a href="#what" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>What we do</a>
+          <a href="#proof" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>Proof</a>
+          <a href="#diff" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>Why us</a>
         </div>
         <BookingButton className="btn btn-lime" />
       </div>

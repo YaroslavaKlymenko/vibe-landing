@@ -77,7 +77,7 @@ export default function WhyDifferent() {
           {diffs.map((d, i) => (
             <div
               key={i}
-              className={`reveal ${delays[i]}`}
+              className={`reveal diff-card ${delays[i]}`}
               style={{
                 ...d.style,
                 gridColumn: `span ${d.span}`,

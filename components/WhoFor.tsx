@@ -51,7 +51,7 @@ export default function WhoFor() {
 
           {/* Fence card */}
           <div
-            className="reveal d2"
+            className="reveal d2 fence-card"
             style={{
               background: 'var(--charcoal)',
               color: 'var(--cream)',
