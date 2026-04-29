@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
+import { Analytics } from '@vercel/analytics/next';
 
 const geistMono = localFont({
   src: '../public/fonts/GeistMono-VariableFont_wght.ttf',
@@ -42,7 +43,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={geistMono.variable}>
-      <body>{children}</body>
+      <body>
+        {children}
+         <Analytics />
+      </body>
     </html>
   )
 }
