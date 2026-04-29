@@ -9,6 +9,7 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.aiplusvibe.com'),
   title: '+Vibe — AI EBITDA Growth Lab',
   description: 'We embed inside non-tech businesses and deploy proprietary AI agent swarms that grow revenue and cut OPEX. Our fee comes out of the margin we create — not your budget.',
   openGraph: {
@@ -18,10 +19,10 @@ export const metadata: Metadata = {
     siteName: '+Vibe',
     images: [
       {
-        url: '/assets/logo-full-color.png',
+        url: '/assets/og-image.svg',
         width: 1200,
         height: 630,
-        alt: '+Vibe',
+        alt: '+Vibe — AI EBITDA Growth Lab',
       },
     ],
     type: 'website',
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '+Vibe — AI EBITDA Growth Lab',
     description: 'AI agent swarms that grow your revenue and cut OPEX.',
-    images: ['/assets/logo-full-color.png'],
+    images: ['/assets/og-image.svg'],
   },
 }
 
