@@ -8,7 +8,7 @@ export default function Footer() {
       padding: '48px 0 36px',
       borderTop: '1px solid rgba(245,237,214,0.1)',
     }}>
-      <div className="wrap" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
+      <div className="wrap footer-inner" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
         <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
           © 2026 +Vibe · AI EBITDA Growth Lab
         </div>

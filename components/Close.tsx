@@ -35,15 +35,15 @@ export default function Close() {
         <h2
           className="reveal"
           style={{
-            fontSize: 'clamp(52px, 7vw, 108px)',
+            fontSize: 'clamp(32px, 4.2vw, 64px)',
             color: 'var(--cream)',
             maxWidth: 1100,
           }}
         >
-          If AI is on your<br />
-          board agenda,<br />
-          <span className="it"><span className="underline-accent lime">tell us what you&apos;re</span></span><br />
-          <span className="it">working on.</span>
+          30 minutes.<br />
+          No deck, no pitch.<br />
+          <span className="it"><span className="underline-accent lime">Just tell us</span></span><br />
+          <span className="it">what you&apos;re building.</span>
         </h2>
 
         <p
@@ -60,7 +60,7 @@ export default function Close() {
           If you&apos;re a mid-market operator and AI is on your board agenda, tell us what you&apos;re working on and where you&apos;re stuck. We&apos;ll tell you if +Vibe is the right fit.
         </p>
 
-        <div className="reveal d2" style={{ marginTop: 72, display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'center' }}>
+        <div className="reveal d2 close-ctas" style={{ marginTop: 72, display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'center' }}>
           <BookingButton className="btn btn-lime" />
           <a
             href="mailto:eugene@aiplusvibe.com"

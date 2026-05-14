@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+
+  <defs>
+    <radialGradient id="glow1" cx="25%" cy="110%" r="55%">
+      <stop offset="0%" stop-color="#F4896B" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0D2B22" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="85%" cy="10%" r="50%">
+      <stop offset="0%" stop-color="#C8F55A" stop-opacity="0.13"/>
+      <stop offset="100%" stop-color="#0D2B22" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0D2B22"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- Scanlines -->
+  <rect width="1200" height="630" fill="none"
+    style="background: repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 36px)"/>
+
+  <!-- ── Logo group, visually centered ── -->
+  <!-- Oval: center (489, 295), rx=92, ry=70 -->
+  <ellipse
+    cx="489" cy="295"
+    rx="92" ry="70"
+    fill="none"
+    stroke="#C8F55A"
+    stroke-width="5.5"
+  />
+
+  <!-- Plus cross (arms stop ~14px inside oval edge) -->
+  <line x1="412" y1="295" x2="566" y2="295"
+    stroke="#C8F55A" stroke-width="11" stroke-linecap="round"/>
+  <line x1="489" y1="240" x2="489" y2="350"
+    stroke="#C8F55A" stroke-width="11" stroke-linecap="round"/>
+
+  <!-- "Vibe" text -->
+  <text
+    x="601" y="332"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="92"
+    font-weight="bold"
+    font-style="italic"
+    fill="#C8F55A"
+    letter-spacing="-1"
+  >Vibe</text>
+
+  <!-- Tagline -->
+  <text
+    x="600" y="405"
+    font-family="'Courier New', 'Lucida Console', monospace"
+    font-size="15"
+    fill="#C8F55A"
+    fill-opacity="0.5"
+    letter-spacing="6"
+    text-anchor="middle"
+    text-transform="uppercase"
+  >AI EBITDA GROWTH LAB</text>
+
+  <!-- Divider -->
+  <line x1="480" y1="428" x2="720" y2="428"
+    stroke="#C8F55A" stroke-opacity="0.18" stroke-width="1"/>
+
+  <!-- URL -->
+  <text
+    x="600" y="590"
+    font-family="'Courier New', 'Lucida Console', monospace"
+    font-size="14"
+    fill="#C8F55A"
+    fill-opacity="0.3"
+    letter-spacing="3"
+    text-anchor="middle"
+  >aiplusvibe.com</text>
+
+</svg>
