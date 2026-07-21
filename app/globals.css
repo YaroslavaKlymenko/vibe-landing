@@ -234,7 +234,17 @@ h2 {
     margin-top: 40px !important;
   }
 
-  /* Prevent any horizontal overflow */
-  body { overflow-x: hidden; }
-  .wrap { overflow-x: hidden; }
+  /* Cases status board — note drops under function/status */
+  .status-row { grid-template-columns: 90px 1fr !important; }
+  .status-row > span:nth-child(2) { justify-self: start; }
+  .status-row .status-note { grid-column: 1 / -1; }
+
+  /* Team cards — single column, photo below text */
+  .team-card { grid-template-columns: 1fr !important; }
+  .team-card .team-text { padding: 28px 22px 0 22px !important; }
+  .team-card .team-photo { justify-content: flex-end; }
+  .team-card .team-photo img { max-width: 210px !important; }
+
+  /* Prevent any horizontal overflow (clip: no horizontal panning on iOS) */
+  html, body { overflow-x: clip; }
 }

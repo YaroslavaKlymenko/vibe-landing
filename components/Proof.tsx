@@ -73,7 +73,7 @@ export default function Proof() {
               { fn: 'Marketing', status: 'planned' as const, label: 'Planned', note: 'Lead generation and campaign ops' },
               { fn: 'BizOps', status: 'planned' as const, label: 'Planned', note: 'Reporting, billing, internal ops' },
             ].map((row, i) => (
-              <div key={row.fn} style={{
+              <div key={row.fn} className="status-row" style={{
                 display: 'grid',
                 gridTemplateColumns: '90px 90px 1fr',
                 gap: 14,
@@ -84,7 +84,7 @@ export default function Proof() {
               }}>
                 <span style={{ fontFamily: 'var(--serif)', fontSize: 18 }}>{row.fn}</span>
                 <span style={statusStyle(row.status)}>{row.status === 'live' ? '● Live' : row.label}</span>
-                <span style={{ fontFamily: 'var(--mono)', fontSize: 11.5, lineHeight: 1.5, color: 'rgba(245,237,214,0.6)' }}>{row.note}</span>
+                <span className="status-note" style={{ fontFamily: 'var(--mono)', fontSize: 11.5, lineHeight: 1.5, color: 'rgba(245,237,214,0.6)' }}>{row.note}</span>
               </div>
             ))}
             <p style={{ fontFamily: 'var(--mono)', fontSize: 12, lineHeight: 1.6, color: 'rgba(245,237,214,0.6)', marginTop: 20 }}>

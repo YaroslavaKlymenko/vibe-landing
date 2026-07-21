@@ -41,7 +41,7 @@ export default function Team() {
 
         <div className="mob-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
           {founders.map((f, i) => (
-            <div key={f.name} className={`reveal d${i + 1}`} style={{
+            <div key={f.name} className={`reveal d${i + 1} team-card`} style={{
               border: '1.5px solid var(--charcoal)',
               borderRadius: 'var(--radius-lg)',
               background: 'var(--cream)',
@@ -51,12 +51,12 @@ export default function Team() {
               overflow: 'hidden',
               minHeight: 340,
             }}>
-              <div style={{ padding: '36px 0 36px 32px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <div className="team-text" style={{ padding: '36px 0 36px 32px', display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <span style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(42,39,35,0.55)' }}>{f.role}</span>
                 <h3 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px, 2.3vw, 34px)', lineHeight: 1.05, letterSpacing: '-0.01em' }}>{f.name}</h3>
                 <p style={{ fontFamily: 'var(--mono)', fontSize: 12.5, lineHeight: 1.65, color: 'rgba(42,39,35,0.75)' }}>{f.bio}</p>
               </div>
-              <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+              <div className="team-photo" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
                 <img src={f.photo} alt={f.name} style={{ width: '100%', maxWidth: 260, height: 'auto', display: 'block' }} />
               </div>
             </div>
