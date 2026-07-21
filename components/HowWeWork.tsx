@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function WhyDifferent() {
-  const diffs: {
+export default function HowWeWork() {
+  const pillars: {
     idx: string
     title: React.ReactNode
     body: string
@@ -10,62 +10,47 @@ export default function WhyDifferent() {
     span: number
   }[] = [
     {
-      idx: '01 / PRICING',
-      title: <>Priced on <span className="it" style={{ color: 'var(--lime)' }}>outcomes,</span> not hours.</>,
-      body: 'You pay against the margin we create. Not against a timesheet, not against a rate card.',
-      style: { background: 'var(--charcoal)', color: 'var(--cream)', border: '1.5px solid var(--charcoal)' },
-      dark: true,
-      span: 7,
-    },
-    {
-      idx: '02 / ENGAGEMENT MODEL',
-      title: <>We <span className="it" style={{ color: 'var(--lime)' }}>embed and compound.</span> We don&apos;t pilot and exit.</>,
-      body: '18-month average engagement. The blueprint gets sharper every quarter — yours, not ours.',
-      style: { background: 'var(--charcoal)', color: 'var(--cream)', border: '1.5px solid var(--charcoal)' },
-      dark: true,
-      span: 5,
-    },
-    {
-      idx: '03 / SCOPE',
-      title: <>One swarm across the <span className="it" style={{ color: 'var(--salmon)' }}>whole business</span>.</>,
-      body: 'Vertical AI software fixes one thing. We move Sales, CS, Marketing, and BizOps on the same rails.',
+      idx: '01 / STRATEGY',
+      title: <>Operator-grade <span className="it" style={{ color: 'var(--salmon)' }}>strategy.</span></>,
+      body: 'Product leadership that has run transformations from the inside. Decisions sequenced by P&L impact, not by framework.',
       style: { background: 'var(--cream)', border: '1.5px solid var(--charcoal)' },
       span: 4,
     },
     {
-      idx: '04 / OWNERSHIP',
-      title: <>Client-owned <span className="it" style={{ color: 'var(--salmon)' }}>infrastructure.</span></>,
-      body: "Not third-party SaaS. Survives M&A due diligence — critical if you're preparing to acquire or be acquired.",
-      style: { background: 'var(--cream)', border: '1.5px solid var(--charcoal)' },
+      idx: '02 / ENGINEERING',
+      title: <>Forward-deployed <span className="it" style={{ color: 'var(--lime)' }}>engineering.</span></>,
+      body: 'Senior engineers inside your operations, against your real systems and data. We ship into production, not into slideware.',
+      style: { background: 'var(--charcoal)', color: 'var(--cream)', border: '1.5px solid var(--charcoal)' },
+      dark: true,
       span: 4,
     },
     {
-      idx: '05 / DEPTH',
-      title: <>PM depth, not <span className="it" style={{ color: 'var(--salmon)' }}>consulting slides.</span></>,
-      body: "We put the business on AI rails. We don't consult on it — and we won't hand you a deck instead of a shipped system.",
+      idx: '03 / SYSTEMS',
+      title: <>Proprietary <span className="it" style={{ color: 'var(--salmon)' }}>systems.</span></>,
+      body: 'We arrive with working tooling: agent infrastructure, the Corporate Brain architecture. Not a blank page billed by the hour.',
       style: { background: 'var(--cream)', border: '1.5px solid var(--charcoal)' },
       span: 4,
     },
   ]
 
-  const delays = ['', 'd1', 'd2', 'd3', 'd4']
+  const delays = ['', 'd1', 'd2']
 
   return (
-    <section className="sect cream-soft" id="diff">
+    <section className="sect sky-bg" id="model">
       <div className="wrap">
         <div className="section-topbar reveal">
           <span className="pill" style={{ color: 'var(--charcoal)' }}>
             <span className="dot" />
-            How we&apos;re different
+            The model
           </span>
         </div>
 
         <div style={{ marginBottom: 88 }}>
           <h2 className="reveal">
-            Not another <span className="it"><span className="underline-accent">AI automation agency.</span></span>
+            Not advisors. Not an agency. <span className="it"><span className="underline-accent">An embedded operating capability.</span></span>
           </h2>
           <p className="lead reveal d1">
-            Five things that actually matter — the rest of the category does roughly none of them.
+            Three ingredients, one embedded team: inside your companies, on your infrastructure.
           </p>
         </div>
 
@@ -74,7 +59,7 @@ export default function WhyDifferent() {
           gridTemplateColumns: 'repeat(12, 1fr)',
           gap: 20,
         }}>
-          {diffs.map((d, i) => (
+          {pillars.map((d, i) => (
             <div
               key={i}
               className={`reveal diff-card ${delays[i]}`}

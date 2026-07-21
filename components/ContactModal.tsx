@@ -1,13 +1,13 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 
-type ChipGroup = { rev: string; vert: string }
+type ChipGroup = { who: string; vert: string }
 
 export default function ContactModal() {
   const [open, setOpen] = useState(false)
   const [sent, setSent] = useState(false)
   const [submitting, setSubmitting] = useState(false)
-  const [chips, setChips] = useState<ChipGroup>({ rev: '', vert: '' })
+  const [chips, setChips] = useState<ChipGroup>({ who: '', vert: '' })
   const nameRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function ContactModal() {
   const close = () => {
     setOpen(false)
     setSent(false)
-    setChips({ rev: '', vert: '' })
+    setChips({ who: '', vert: '' })
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -43,7 +43,7 @@ export default function ContactModal() {
       name: fd.get('name'),
       email: fd.get('email'),
       company: fd.get('company'),
-      revenue: chips.rev,
+      who: chips.who,
       vertical: fd.get('vertical'),
       message: fd.get('message'),
     }
@@ -69,7 +69,7 @@ export default function ContactModal() {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Book an intro"
+      aria-label="Book a call"
       onKeyDown={handleKeyDown}
       className="modal-overlay"
       style={{
@@ -151,13 +151,13 @@ export default function ContactModal() {
             display: 'flex', flexDirection: 'column', gap: 24,
           }}>
           <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--lime)' }}>
-            Book an intro · Q3&apos;26
+            Book a call · Q3&apos;26
           </div>
           <h3 style={{ fontFamily: 'var(--serif)', fontSize: 36, lineHeight: 1.1 }}>
-            If AI is on your board agenda, tell us what you&apos;re <span style={{ fontStyle: 'italic', color: 'var(--lime)' }}>working on.</span>
+            Tell us what you own and what&apos;s <span style={{ fontStyle: 'italic', color: 'var(--lime)' }}>next on the pipeline.</span>
           </h3>
           <p style={{ fontFamily: 'var(--mono)', fontSize: 13, lineHeight: 1.65, color: 'rgba(245,237,214,0.72)' }}>
-            If you&apos;re a mid-market operator and AI is on your board agenda, tell us what you&apos;re working on and where you&apos;re stuck. We&apos;ll tell you if +Vibe is the right fit.
+            If you&apos;re a fund partner or a platform operator, tell us what you own and what you&apos;re acquiring. We&apos;ll tell you, honestly, if +Vibe is the right team to build it.
           </p>
           <ul style={{ borderTop: '1px solid rgba(245,237,214,0.18)', marginTop: 'auto' }}>
             {[
@@ -196,26 +196,26 @@ export default function ContactModal() {
             </Field>
           </div>
 
-          <Field label="Revenue band">
+          <Field label="You are">
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 4 }}>
-              {['<$1M', '$1M–$5M', '$5M–$20M', '$20M+'].map((v) => (
+              {['PE / Investment fund', 'Roll-up platform', 'Independent operator'].map((v) => (
                 <button
                   key={v} type="button"
-                  onClick={() => toggleChip('rev', v)}
-                  style={chipStyle(chips.rev === v)}
+                  onClick={() => toggleChip('who', v)}
+                  style={chipStyle(chips.who === v)}
                 >{v}</button>
               ))}
             </div>
           </Field>
 
           <Field label="Vertical">
-            <input name="vertical" type="text" placeholder="e.g. Logistics & Supply Chain" style={inputStyle} />
+            <input name="vertical" type="text" placeholder="e.g. Home services, logistics, hospitality" style={inputStyle} />
           </Field>
 
-          <Field label="What are you working on — where are you stuck?">
+          <Field label="What do you own, and what's next on the pipeline?">
             <textarea
               name="message" rows={3}
-              placeholder="We're rolling up independent 3PLs — sales ops are the bottleneck…"
+              placeholder="We own six home-services companies, two more closing this quarter…"
               style={{ ...inputStyle, resize: 'none' }}
             />
           </Field>

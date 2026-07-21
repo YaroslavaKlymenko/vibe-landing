@@ -14,7 +14,7 @@ export default function BookingButton({ className, style, children }: BookingBut
 
   return (
     <button onClick={open} className={className} style={style}>
-      {children ?? <>Book an intro <span className="btn-arrow">→</span></>}
+      {children ?? <>Book a call <span className="btn-arrow">→</span></>}
     </button>
   )
 }

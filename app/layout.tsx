@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { Newsreader } from 'next/font/google'
 import './globals.css'
 import { Analytics } from '@vercel/analytics/next';
 
@@ -9,13 +10,19 @@ const geistMono = localFont({
   weight: '100 900',
 })
 
+const newsreader = Newsreader({
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  variable: '--font-newsreader',
+})
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.aiplusvibe.com'),
-  title: '+Vibe — AI EBITDA Growth Lab',
-  description: 'We embed inside non-tech businesses and deploy proprietary AI agent swarms that grow revenue and cut OPEX. Our fee comes out of the margin we create — not your budget.',
+  title: '+Vibe · AI Roll-Up Partner for PE & Operators',
+  description: 'Strategy, forward-deployed engineering, and proprietary systems for PE funds and roll-up operators: from AI due diligence to a Corporate Brain across the portfolio.',
   openGraph: {
-    title: '+Vibe — AI EBITDA Growth Lab',
-    description: 'AI agent swarms that grow your revenue and cut OPEX.',
+    title: '+Vibe · AI Roll-Up Partner for PE & Operators',
+    description: 'You own the companies. We make them AI-native.',
     url: 'https://www.aiplusvibe.com',
     siteName: '+Vibe',
     images: [
@@ -23,15 +30,15 @@ export const metadata: Metadata = {
         url: '/assets/og-image.svg',
         width: 1200,
         height: 630,
-        alt: '+Vibe — AI EBITDA Growth Lab',
+        alt: '+Vibe · AI Roll-Up Partner for PE & Operators',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '+Vibe — AI EBITDA Growth Lab',
-    description: 'AI agent swarms that grow your revenue and cut OPEX.',
+    title: '+Vibe · AI Roll-Up Partner for PE & Operators',
+    description: 'You own the companies. We make them AI-native.',
     images: ['/assets/og-image.svg'],
   },
 }
@@ -42,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={geistMono.variable}>
+    <html lang="en" className={`${geistMono.variable} ${newsreader.variable}`}>
       <body>
         {children}
          <Analytics />

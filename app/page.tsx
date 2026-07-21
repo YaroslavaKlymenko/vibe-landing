@@ -1,9 +1,10 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
-import WhoFor from '@/components/WhoFor'
-import HowItWorks from '@/components/HowItWorks'
-import SocialProof from '@/components/SocialProof'
-import WhyDifferent from '@/components/WhyDifferent'
+import Thesis from '@/components/Thesis'
+import WhatWeDo from '@/components/WhatWeDo'
+import HowWeWork from '@/components/HowWeWork'
+import Proof from '@/components/Proof'
+import Team from '@/components/Team'
 import Close from '@/components/Close'
 import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
@@ -14,10 +15,11 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <WhoFor />
-        <HowItWorks />
-        <SocialProof />
-        <WhyDifferent />
+        <Thesis />
+        <WhatWeDo />
+        <HowWeWork />
+        <Proof />
+        <Team />
         <Close />
       </main>
       <Footer />

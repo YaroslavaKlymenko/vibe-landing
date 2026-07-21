@@ -9,7 +9,7 @@
   --sky-soft: #E1EEF6;
   --lime: #C8F55A;
   --salmon: #F4896B;
-  --serif: var(--font-geist-mono), 'Times New Roman', serif;
+  --serif: var(--font-newsreader), 'Times New Roman', serif;
   --mono: var(--font-geist-mono), 'Courier New', monospace;
   --maxw: 1360px;
   --radius: 22px;
@@ -86,7 +86,7 @@ ul { list-style: none; }
   transition: transform .18s ease, background .2s ease, color .2s ease, box-shadow .18s ease;
 }
 .btn-lime {
-  background: var(--lime);
+  background: var(--cream);
   color: var(--charcoal);
   border: 1.5px solid var(--charcoal);
 }
@@ -108,7 +108,7 @@ ul { list-style: none; }
 .diff-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(42,39,35,0.1); }
 
 /* bold + scribble underline */
-.it { font-family: var(--serif); font-weight: bold; }
+.it { font-family: var(--serif); font-weight: 500; }
 .underline-accent {
   position: relative;
   display: inline-block;
@@ -171,18 +171,15 @@ h2 {
   .section-topbar { margin-bottom: 24px; }
   #close { padding: 60px 0 !important; }
 
-  /* Hero — push content below ticker (ticker ends ~118px from top; section padding 72px → need wrap ≥ 76px) */
+  /* Hero */
   #top { padding: 72px 0 60px !important; min-height: auto !important; }
-  #top .wrap { padding-top: 100px !important; }
+  #top .wrap { padding-top: 16px !important; min-height: 0 !important; }
   .hero-eyebrow { margin-bottom: 24px !important; }
   #top h1 { margin-bottom: 44px !important; }
   #top .hero-who { margin-top: 20px !important; }
   #top .hero-sub { margin-top: 44px !important; }
   #top .hero-ctas { margin-top: 52px !important; }
 
-  /* Suppress forced line-breaks on small screens */
-  #what h2 br,
-  #close h2 br { display: none; }
 
   /* Single-column grid helper */
   .mob-stack {
@@ -206,12 +203,12 @@ h2 {
   }
   .mbr-card:hover, .diff-card:hover { transform: none; box-shadow: none; }
 
-  /* WhoFor grid margin + fence card padding */
-  #who .mob-stack { margin-top: 36px !important; }
+  /* Thesis grid margin + fence card padding */
+  #thesis .mob-stack { margin-top: 36px !important; }
   .fence-card { padding: 28px 22px !important; }
 
-  /* WhyDifferent head spacing */
-  #diff .wrap > div:first-of-type { margin-bottom: 40px !important; }
+  /* HowWeWork head spacing */
+  #model .wrap > div:first-of-type { margin-bottom: 40px !important; }
 
   /* HowItWorks footnote bar — stack vertically */
   .how-footnote {

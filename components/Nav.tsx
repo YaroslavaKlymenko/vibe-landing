@@ -20,7 +20,9 @@ export default function Nav() {
         zIndex: 100,
         padding: '20px 0',
         transition: 'background .25s ease, backdrop-filter .25s ease, border-color .25s ease',
-        borderBottom: '1px solid transparent',
+        borderBottomWidth: 1,
+        borderBottomStyle: 'solid',
+        borderBottomColor: 'transparent',
         ...(scrolled ? {
           background: 'rgba(42,39,35,0.85)',
           backdropFilter: 'blur(10px)',
@@ -33,10 +35,11 @@ export default function Nav() {
           <img src="/assets/logo-full-color.png" alt="+Vibe" style={{ height: 28, width: 'auto' }} />
         </a>
         <div className="hidden md:flex" style={{ gap: 28 }}>
-          <a href="#who" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>Who it&apos;s for</a>
+          <a href="#thesis" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>The thesis</a>
           <a href="#what" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>What we do</a>
-          <a href="#proof" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>Proof</a>
-          <a href="#diff" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>Why us</a>
+          <a href="#model" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>The model</a>
+          <a href="#cases" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>Cases</a>
+          <a href="#team" className="nav-link" style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--cream)' }}>Team</a>
         </div>
         <BookingButton className="btn btn-lime" />
       </div>

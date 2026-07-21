@@ -10,11 +10,11 @@ export default function Footer() {
     }}>
       <div className="wrap footer-inner" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
         <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-          © 2026 +Vibe · AI EBITDA Growth Lab
+          © 2026 +Vibe · AI Roll-Up Partner
         </div>
         <div style={{ display: 'flex', gap: 24, fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
           <a href="mailto:eugene@aiplusvibe.com">eugene@aiplusvibe.com</a>
-          <BookingButton style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,237,214,0.5)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Book an intro</BookingButton>
+          <BookingButton style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,237,214,0.5)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Book a call</BookingButton>
         </div>
       </div>
     </footer>

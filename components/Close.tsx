@@ -40,10 +40,10 @@ export default function Close() {
             maxWidth: 1100,
           }}
         >
-          30 minutes.<br />
+          One call.<br />
           No deck, no pitch.<br />
-          <span className="it"><span className="underline-accent lime">Just tell us</span></span><br />
-          <span className="it">what you&apos;re building.</span>
+          <span className="it"><span className="underline-accent lime">Tell us what you own</span></span><br />
+          <span className="it">and what&apos;s next.</span>
         </h2>
 
         <p
@@ -57,24 +57,11 @@ export default function Close() {
             marginTop: 36,
           }}
         >
-          If you&apos;re a mid-market operator and AI is on your board agenda, tell us what you&apos;re working on and where you&apos;re stuck. We&apos;ll tell you if +Vibe is the right fit.
+          You tell us what you own and what you&apos;re acquiring. We tell you, honestly, where AI moves the number and whether we&apos;re the right team to build it.
         </p>
 
         <div className="reveal d2 close-ctas" style={{ marginTop: 72, display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'center' }}>
           <BookingButton className="btn btn-lime" />
-          <a
-            href="mailto:eugene@aiplusvibe.com"
-            style={{
-              fontFamily: 'var(--mono)',
-              fontSize: 13,
-              color: 'rgba(245,237,214,0.7)',
-              letterSpacing: '0.06em',
-              borderBottom: '1px solid rgba(245,237,214,0.25)',
-              paddingBottom: 3,
-            }}
-          >
-            eugene@aiplusvibe.com
-          </a>
         </div>
       </div>
     </section>
