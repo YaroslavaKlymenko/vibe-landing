@@ -31,7 +31,7 @@ export default function Proof() {
         </h2>
 
         {/* Outpost case */}
-        <div className="reveal d1 mob-stack" style={{
+        <div className="reveal d1 mob-stack case-card" style={{
           border: '1px solid rgba(245,237,214,0.3)',
           borderRadius: 'var(--radius-lg)',
           padding: '44px 40px',
@@ -109,7 +109,7 @@ export default function Proof() {
               metricNote: 'faster lead processing',
             },
           ].map((c, i) => (
-            <div key={c.sector} className={`reveal d${i + 1}`} style={{
+            <div key={c.sector} className={`reveal d${i + 1} case-card`} style={{
               border: '1px solid rgba(245,237,214,0.3)',
               borderRadius: 'var(--radius-lg)',
               padding: '32px 28px',

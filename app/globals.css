@@ -171,14 +171,18 @@ h2 {
   .section-topbar { margin-bottom: 24px; }
   #close { padding: 60px 0 !important; }
 
-  /* Hero */
-  #top { padding: 72px 0 60px !important; min-height: auto !important; }
-  #top .wrap { padding-top: 16px !important; min-height: 0 !important; }
-  .hero-eyebrow { margin-bottom: 24px !important; }
-  #top h1 { margin-bottom: 44px !important; }
-  #top .hero-who { margin-top: 20px !important; }
-  #top .hero-sub { margin-top: 44px !important; }
-  #top .hero-ctas { margin-top: 52px !important; }
+  /* Tighter side margins: more content per line */
+  .wrap { padding: 0 18px; }
+
+  /* Hero — condensed vertically to fit one screen */
+  #top { padding: 68px 0 40px !important; min-height: auto !important; }
+  #top .wrap { padding-top: 12px !important; min-height: 0 !important; }
+  .hero-eyebrow { margin-bottom: 16px !important; }
+  #top h1 { margin-bottom: 20px !important; }
+  #top .hero-who { margin-top: 12px !important; }
+  #top .hero-sub { margin-top: 18px !important; }
+  #top .hero-ctas { margin-top: 24px !important; }
+  #top .mob-stack { padding-top: 20px !important; gap: 20px !important; }
 
 
   /* Single-column grid helper */
@@ -204,8 +208,11 @@ h2 {
   .mbr-card:hover, .diff-card:hover { transform: none; box-shadow: none; }
 
   /* Thesis grid margin + fence card padding */
-  #thesis .mob-stack { margin-top: 36px !important; }
-  .fence-card { padding: 28px 22px !important; }
+  #thesis .mob-stack { margin-top: 32px !important; gap: 40px !important; }
+  .fence-card { padding: 24px 18px !important; }
+
+  /* Cases cards — tighter inner padding */
+  .case-card { padding: 26px 18px !important; }
 
   /* HowWeWork head spacing */
   #model .wrap > div:first-of-type { margin-bottom: 40px !important; }
@@ -234,6 +241,9 @@ h2 {
     margin-top: 40px !important;
   }
 
+  /* Market strip — two small cards per row */
+  .market-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+
   /* Cases status board — note drops under function/status */
   .status-row { grid-template-columns: 90px 1fr !important; }
   .status-row > span:nth-child(2) { justify-self: start; }
@@ -241,8 +251,8 @@ h2 {
 
   /* Team cards — single column, photo below text */
   .team-card { grid-template-columns: 1fr !important; }
-  .team-card .team-text { padding: 28px 22px 0 22px !important; }
-  .team-card .team-photo { justify-content: flex-end; }
+  .team-card .team-text { padding: 0 18px 24px 18px !important; }
+  .team-card .team-photo { order: -1; justify-content: flex-end; padding-right: 14px; }
   .team-card .team-photo img { max-width: 210px !important; }
 
   /* Prevent any horizontal overflow (clip: no horizontal panning on iOS) */

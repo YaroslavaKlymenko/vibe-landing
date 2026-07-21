@@ -81,7 +81,7 @@ export default function Thesis() {
           <div style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px, 2.6vw, 40px)', lineHeight: 1.1, letterSpacing: '-0.02em', maxWidth: 900 }}>
             <span className="it" style={{ color: 'var(--salmon)' }}>$1B+</span> has flowed into AI roll-up platforms in the last 18 months.
           </div>
-          <div className="mob-stack" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16, marginTop: 36 }}>
+          <div className="market-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16, marginTop: 36 }}>
             {[
               { name: 'Eudia', detail: 'Legal services', capital: '$105M' },
               { name: 'Accrual', detail: 'Accounting & tax', capital: '$75M' },
