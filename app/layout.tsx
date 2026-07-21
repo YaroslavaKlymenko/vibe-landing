@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: '+Vibe',
     images: [
       {
-        url: '/assets/og-image.svg',
+        url: '/assets/og-image.png',
         width: 1200,
         height: 630,
         alt: '+Vibe · AI Roll-Up Partner for PE & Operators',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '+Vibe · AI Roll-Up Partner for PE & Operators',
     description: 'You own the companies. We make them AI-native.',
-    images: ['/assets/og-image.svg'],
+    images: ['/assets/og-image.png'],
   },
 }
 

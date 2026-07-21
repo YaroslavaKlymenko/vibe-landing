@@ -22,15 +22,8 @@ export default function Hero() {
         display: 'flex',
         flexDirection: 'column',
       }}>
-        {/* Eyebrow + H1 */}
+        {/* H1 */}
         <div>
-          <div className="reveal hero-eyebrow" style={{ marginBottom: 32, color: 'var(--cream)' }}>
-            <span className="pill" style={{ borderColor: 'rgba(245,237,214,0.3)', color: 'var(--cream)' }}>
-              <span className="dot" />
-              Est. 2025 · San Francisco
-            </span>
-          </div>
-
           <h1
             className="reveal d1"
             style={{
