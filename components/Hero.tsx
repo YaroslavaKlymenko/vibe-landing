@@ -17,7 +17,7 @@ export default function Hero() {
       <RevealInit />
 
       <div className="wrap" style={{
-        paddingTop: 110,
+        paddingTop: 150,
         minHeight: 'calc(100vh - 320px)',
         display: 'flex',
         flexDirection: 'column',
